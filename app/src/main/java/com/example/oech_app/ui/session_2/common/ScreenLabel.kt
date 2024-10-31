@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.TextDarker
 import com.example.oech_app.ui.theme.TextLighter
 
@@ -32,7 +33,7 @@ fun ScreenLabel(
             lineHeight = 30.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
-            color = TextDarker
+            color = TextLighter
         )
         Text(
             text = description,
@@ -41,7 +42,7 @@ fun ScreenLabel(
             lineHeight = 16.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
-            color = TextLighter
+            color = Gray
         )
     }
 }
