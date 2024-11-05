@@ -9,6 +9,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
+import com.example.oech_app.ui.session_2.forgotpassword.ForgotPasswordScreen
+import com.example.oech_app.ui.session_2.home.HomeScreen
 
 class SignInScreen: Screen {
 
@@ -26,7 +28,10 @@ class SignInScreen: Screen {
             fnOnChange = {},
             onClickTrailing = {},
             checked = checked,
-            onCheckedChange = {checked = it}
+            onCheckedChange = {checked = it},
+            onSignUp = {navigator?.pop()},
+            onLogIn = {navigator?.push(HomeScreen())},
+            onForPass = {navigator?.push(ForgotPasswordScreen())}
         )
     }
 }

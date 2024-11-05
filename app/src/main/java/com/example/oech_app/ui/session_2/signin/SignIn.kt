@@ -35,12 +35,18 @@ fun SignIn (
     fnOnChange: (String)-> Unit,
     onClickTrailing: () -> Unit,
     checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
+    onForPass: () -> Unit,
+    onLogIn: () -> Unit,
+    onSignUp: () -> Unit
 ){
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
-        modifier = Modifier.fillMaxWidth().fillMaxHeight().background(Color.White).padding(23.dp, 0.dp, 23.dp, 0.dp),
+        modifier = Modifier.fillMaxWidth()
+            .fillMaxHeight()
+            .background(Color.White)
+            .padding(23.dp, 155.dp, 23.dp, 0.dp),
     ){
         Column {
             ScreenLabel(
@@ -96,7 +102,7 @@ fun SignIn (
             CheckBoxRow(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
-                onClick = {},
+                onClick = onForPass,
                 clickable = "                           Forgot Password?",
                 nonClickable = "Remember password",
                 modifier = Modifier,
@@ -108,20 +114,20 @@ fun SignIn (
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(23.dp, 100.dp, 23.dp, 0.dp)
+                .padding(0.dp, 100.dp, 0.dp, 0.dp)
         ) {
             PrimaryButton(
                 modifier = Modifier
-                    .padding(0.dp, 0.dp, 0.dp, 20.dp)
                     .fillMaxWidth()
-                    .wrapContentHeight(),
+                    .wrapContentHeight()
+                    .padding(0.dp, 0.dp, 0.dp, 20.dp),
                 buttonText = "Log In",
-                onClickPrimary = {}
+                onClickPrimary = onLogIn
             )
             ClickableString(
                 clickable = "Sign Up",
                 nonClickable = "Don't have an account?",
-                onClick = {}
+                onClick = onSignUp
             )
             Text(
                 "or log in using",

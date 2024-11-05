@@ -24,7 +24,7 @@ fun ClickableString(
         )) {
             append(nonClickable)
         }
-        pushStringAnnotation("signIn", "pushToSignIn")
+        pushStringAnnotation("click", "clickable")
         withStyle(SpanStyle(
             color = Primary,
             fontWeight = FontWeight.W400,
@@ -40,7 +40,7 @@ fun ClickableString(
             annotatedText.getStringAnnotations(offset, offset).firstOrNull()?.let {
                 annotation ->
                 when (annotation.item) {
-                    "pushToSignIn" -> onClick()
+                    "clickable" -> onClick()
                 }
             }
         }

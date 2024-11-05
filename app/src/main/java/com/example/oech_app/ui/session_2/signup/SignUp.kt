@@ -31,12 +31,22 @@ import com.example.session_1.R
 
 @Composable
 fun SignUp(
-    fnValue: String,
-    fnOnChange: (String) -> Unit,
+    nameText: String,
+    phoneText: String,
+    emailText: String,
+    passwordText: String,
+    repeatPasswordText: String,
+    onNameChange: (String) -> Unit,
+    onPhoneChange: (String) -> Unit,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onRepPasswordChange: (String) -> Unit,
     onClickTrailing1: () -> Unit,
     onClickTrailing2: () -> Unit,
     checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
+    onSignUp: () -> Unit,
+    onSignIn: () -> Unit
 ){
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight().background(Color.White),
@@ -54,8 +64,8 @@ fun SignUp(
                     .padding(0.dp, 0.dp, 0.dp, 28.dp)
             )
             TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
+                value = nameText,
+                onValueChange = onNameChange,
                 placeholder = {
                     Text(
                         "Ivanov Ivan",
@@ -71,8 +81,8 @@ fun SignUp(
                 label = "Full name"
             )
             TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
+                value = phoneText,
+                onValueChange = onPhoneChange,
                 placeholder = {
                     Text(
                         "+7(999)999-99-99",
@@ -88,8 +98,8 @@ fun SignUp(
                 label = "Phone Number"
             )
             TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
+                value = emailText,
+                onValueChange = onEmailChange,
                 placeholder = {
                     Text(
                         "***********@mail.com",
@@ -105,8 +115,8 @@ fun SignUp(
                 label = "Email Address"
             )
             TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
+                value = passwordText,
+                onValueChange = onPasswordChange,
                 placeholder = {
                     Text(
                         "**********",
@@ -131,8 +141,8 @@ fun SignUp(
                 label = "Password"
             )
             TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
+                value = repeatPasswordText,
+                onValueChange = onRepPasswordChange,
                 placeholder = {
                     Text(
                         "**********",
@@ -179,12 +189,12 @@ fun SignUp(
                     .fillMaxWidth()
                     .wrapContentHeight(),
                 buttonText = "Sign Up",
-                onClickPrimary = {}
+                onClickPrimary = onSignUp
             )
             ClickableString(
                 clickable = "Sign In",
                 nonClickable = "Already have an account?",
-                onClick = {}
+                onClick = onSignIn
             )
             Text(
                 "or sign in using",
