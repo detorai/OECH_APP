@@ -1,7 +1,8 @@
-package com.example.oech_app.ui.session_2.signup
+package com.example.oech_app.ui.session_2.signin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,66 +27,28 @@ import com.example.oech_app.ui.session_2.common.ScreenLabel
 import com.example.oech_app.ui.session_2.common.TextFieldRow
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.GrayLighter
-import com.example.oech_app.ui.theme.Primary
 import com.example.session_1.R
 
 @Composable
-fun SignUp(
+fun SignIn (
     fnValue: String,
-    fnOnChange: (String) -> Unit,
-    onClickTrailing1: () -> Unit,
-    onClickTrailing2: () -> Unit,
+    fnOnChange: (String)-> Unit,
+    onClickTrailing: () -> Unit,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ){
     Column(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight().background(Color.White),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start,
+        modifier = Modifier.fillMaxWidth().fillMaxHeight().background(Color.White).padding(23.dp, 0.dp, 23.dp, 0.dp),
     ){
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.Start,
-            modifier = Modifier.padding(23.dp, 75.dp, 23.dp, 0.dp)
-        ) {
+        Column {
             ScreenLabel(
-                labelText = "Create an account",
-                description = "Complete the sign up process to get started",
+                labelText = "Welcome Back",
+                description = "Fill in your email and password to continue",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 28.dp)
-            )
-            TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
-                placeholder = {
-                    Text(
-                        "Ivanov Ivan",
-                        color = GrayLighter,
-                        fontSize = 14.sp,
-                        lineHeight = 16.sp
-                    )
-                },
-                trailingIcon = {},
-                modifier = Modifier
-                    .wrapContentHeight()
-                    .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Full name"
-            )
-            TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
-                placeholder = {
-                    Text(
-                        "+7(999)999-99-99",
-                        color = GrayLighter,
-                        fontSize = 14.sp,
-                        lineHeight = 16.sp
-                    )
-                },
-                trailingIcon = {},
-                modifier = Modifier
-                    .wrapContentHeight()
-                    .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Phone Number"
             )
             TextFieldRow(
                 value = fnValue,
@@ -117,7 +80,7 @@ fun SignUp(
                 },
                 trailingIcon = {
                     IconButton(
-                        onClick = onClickTrailing1
+                        onClick = onClickTrailing
                     ) {
                         Icon(
                             imageVector = ImageVector.vectorResource(R.drawable.eye_slash),
@@ -130,40 +93,14 @@ fun SignUp(
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
                 label = "Password"
             )
-            TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
-                placeholder = {
-                    Text(
-                        "**********",
-                        color = GrayLighter,
-                        fontSize = 14.sp,
-                        lineHeight = 16.sp
-                    )
-                },
-                trailingIcon = {
-                    IconButton(
-                        onClick = onClickTrailing2
-                    ) {
-                        Icon(
-                            imageVector = ImageVector.vectorResource(R.drawable.eye_slash),
-                            contentDescription = "trailing icon"
-                        )
-                    }
-                },
-                modifier = Modifier
-                    .wrapContentHeight()
-                    .padding(0.dp, 0.dp, 0.dp, 37.dp),
-                label = "Confirm Password"
-            )
             CheckBoxRow(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
                 onClick = {},
-                clickable = "Terms and \n       conditions and private policy",
-                nonClickable = "By ticking this box, you agree to our ",
-                modifier = Modifier.padding(25.dp, 0.dp, 0.dp, 0.dp),
-                colorPrime = Primary
+                clickable = "                           Forgot Password?",
+                nonClickable = "Remember password",
+                modifier = Modifier,
+                colorPrime = Gray
             )
         }
         Column(
@@ -171,23 +108,23 @@ fun SignUp(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(23.dp, 32.dp, 23.dp, 0.dp)
+                .padding(23.dp, 100.dp, 23.dp, 0.dp)
         ) {
             PrimaryButton(
                 modifier = Modifier
                     .padding(0.dp, 0.dp, 0.dp, 20.dp)
                     .fillMaxWidth()
                     .wrapContentHeight(),
-                buttonText = "Sign Up",
+                buttonText = "Log In",
                 onClickPrimary = {}
             )
             ClickableString(
-                clickable = "Sign In",
-                nonClickable = "Already have an account?",
+                clickable = "Sign Up",
+                nonClickable = "Don't have an account?",
                 onClick = {}
             )
             Text(
-                "or sign in using",
+                "or log in using",
                 fontWeight = FontWeight.W400,
                 fontSize = 14.sp,
                 color = Gray,

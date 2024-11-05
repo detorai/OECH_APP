@@ -1,13 +1,10 @@
 package com.example.oech_app.ui.session_2.common
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.runtime.Composable
@@ -16,41 +13,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.oech_app.common.ClickableString
-import com.example.oech_app.ui.theme.Primary
+
 
 @Composable
 fun CheckBoxRow(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    clickable: String,
+    nonClickable: String,
+    modifier: Modifier,
+    colorPrime: Color
 ){
     Row(
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Start,
         modifier = Modifier.fillMaxWidth()
     ){
         Column(
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start
-        ) {
+            horizontalAlignment = Alignment.Start,
+            modifier = Modifier.size(25.dp,28.dp)
+        ){
             Checkbox(
+                modifier = Modifier.size(14.dp,14.dp),
                 checked = checked,
                 onCheckedChange = onCheckedChange,
                 colors  = CheckboxDefaults.colors(
-                    checkedColor = Primary,
+                    checkedColor = colorPrime,
                     checkmarkColor = Color.White,
-                    uncheckedColor = Color.White,
+                    uncheckedColor = colorPrime,
                 ),
             )
         }
         Column(
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start,
-            modifier = Modifier.padding(25.dp, 0.dp, 0.dp, 0.dp),
+            modifier = modifier,
         ) {
             ClickableString(
-                nonClickable = "By ticking this box, you agree to our ",
-                clickable = "Terms and\n                conditions and private policy",
+                nonClickable = nonClickable,
+                clickable = clickable,
                 onClick = onClick
             )
         }

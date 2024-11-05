@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import cafe.adriel.voyager.navigator.Navigator
+import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Navigator(SignUpScreen())
+            Navigator(SignInScreen())
         }
     }
 }
