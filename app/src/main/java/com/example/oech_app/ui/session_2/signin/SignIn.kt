@@ -38,7 +38,7 @@ fun SignIn (
     onCheckedChange: (Boolean) -> Unit,
     onForPass: () -> Unit,
     onLogIn: () -> Unit,
-    onSignUp: () -> Unit
+    onSignUp: () -> Unit,
 ){
     Column(
         verticalArrangement = Arrangement.Top,
@@ -122,7 +122,8 @@ fun SignIn (
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 20.dp),
                 buttonText = "Log In",
-                onClickPrimary = onLogIn
+                onClickPrimary = onLogIn,
+                enabled = true
             )
             ClickableString(
                 clickable = "Sign Up",

@@ -52,7 +52,8 @@ fun OTPVerification(
             PrimaryButton(
                 modifier = Modifier.fillMaxWidth().padding(0.dp, 84.dp, 0.dp, 0.dp),
                 buttonText = "Set New Password",
-                onClickPrimary = onSetPass
+                onClickPrimary = onSetPass,
+                enabled = true
             )
         }
     }

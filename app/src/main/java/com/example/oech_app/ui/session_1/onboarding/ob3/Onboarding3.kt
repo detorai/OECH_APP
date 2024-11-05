@@ -71,7 +71,8 @@ fun Onboarding3(
             PrimaryButton(
                 modifier = Modifier.padding(0.dp, 0.dp, 0.dp ,20.dp).size(342.dp ,46.dp),
                 buttonText = "Sign Up",
-                onClickPrimary = onClickPrimary
+                onClickPrimary = onClickPrimary,
+                enabled = true
             )
             ClickableString(
                 clickable = "Sign in",

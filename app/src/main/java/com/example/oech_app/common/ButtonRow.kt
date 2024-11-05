@@ -30,7 +30,8 @@ fun ButtonRow(
         PrimaryButton(
             modifier = Modifier.size(100.dp, 50.dp),
             buttonText = "Next",
-            onClickPrimary = onClickPrimary
+            onClickPrimary = onClickPrimary,
+            enabled = true
         )
     }
 }

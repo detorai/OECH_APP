@@ -32,6 +32,8 @@ fun NewPassword(
     onClickTrailing2: () -> Unit,
     onLogIn: () -> Unit
 ){
+    val allFull = passwordText.isNotBlank() && repeatPasswordText.isNotBlank()
+
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
@@ -93,7 +95,8 @@ fun NewPassword(
         PrimaryButton(
             onClickPrimary = onLogIn,
             modifier = Modifier.fillMaxWidth(),
-            buttonText = "Log In"
+            buttonText = "Log In",
+            enabled = allFull
         )
     }
 }

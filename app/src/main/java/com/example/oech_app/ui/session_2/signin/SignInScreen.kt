@@ -31,7 +31,7 @@ class SignInScreen: Screen {
             onCheckedChange = {checked = it},
             onSignUp = {navigator?.pop()},
             onLogIn = {navigator?.push(HomeScreen())},
-            onForPass = {navigator?.push(ForgotPasswordScreen())}
+            onForPass = {navigator?.push(ForgotPasswordScreen())},
         )
     }
 }

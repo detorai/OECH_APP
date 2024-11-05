@@ -27,6 +27,8 @@ fun ForgotPassword (
     onSignIn: () -> Unit,
     onSendOTP: () -> Unit
 ) {
+    val allFull = fnValue.isNotBlank()
+
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
@@ -71,7 +73,8 @@ fun ForgotPassword (
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 20.dp),
                 buttonText = "Send OTP",
-                onClickPrimary = onSendOTP
+                onClickPrimary = onSendOTP,
+                enabled = allFull
             )
             ClickableString(
                 clickable = "Sign In",

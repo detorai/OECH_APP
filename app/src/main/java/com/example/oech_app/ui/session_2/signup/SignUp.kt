@@ -17,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.common.ClickableString
@@ -35,6 +37,8 @@ fun SignUp(
     phoneText: String,
     emailText: String,
     passwordText: String,
+    passVisible: Boolean,
+    repPassVisible: Boolean,
     repeatPasswordText: String,
     onNameChange: (String) -> Unit,
     onPhoneChange: (String) -> Unit,
@@ -46,8 +50,10 @@ fun SignUp(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     onSignUp: () -> Unit,
-    onSignIn: () -> Unit
+    onSignIn: () -> Unit,
+    allFull: Boolean
 ){
+
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight().background(Color.White),
     ){
@@ -78,7 +84,7 @@ fun SignUp(
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Full name"
+                label = "Full name",
             )
             TextFieldRow(
                 value = phoneText,
@@ -117,6 +123,7 @@ fun SignUp(
             TextFieldRow(
                 value = passwordText,
                 onValueChange = onPasswordChange,
+
                 placeholder = {
                     Text(
                         "**********",
@@ -124,6 +131,13 @@ fun SignUp(
                         fontSize = 14.sp,
                         lineHeight = 16.sp
                     )
+                },
+                visual =
+                if (passVisible){
+                    VisualTransformation.None
+                }
+                else {
+                    PasswordVisualTransformation()
                 },
                 trailingIcon = {
                     IconButton(
@@ -150,6 +164,13 @@ fun SignUp(
                         fontSize = 14.sp,
                         lineHeight = 16.sp
                     )
+                },
+                visual =
+                if (repPassVisible){
+                    VisualTransformation.None
+                }
+                else {
+                    PasswordVisualTransformation()
                 },
                 trailingIcon = {
                     IconButton(
@@ -189,7 +210,8 @@ fun SignUp(
                     .fillMaxWidth()
                     .wrapContentHeight(),
                 buttonText = "Sign Up",
-                onClickPrimary = onSignUp
+                onClickPrimary = onSignUp,
+                enabled = allFull
             )
             ClickableString(
                 clickable = "Sign In",
