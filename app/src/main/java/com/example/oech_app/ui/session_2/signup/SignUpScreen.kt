@@ -1,13 +1,10 @@
 package com.example.oech_app.ui.session_2.signup
 
+import androidx.lifecycle.viewmodel.compose.viewModel
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
@@ -18,12 +15,12 @@ import com.example.oech_app.ui.session_2.signin.SignInScreen
 class SignUpScreen: Screen {
 
     override val key: ScreenKey = uniqueScreenKey
-    private val viewModel = Session2ViewModel()
 
     @SuppressLint("UnrememberedMutableState")
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
+        val viewModel = viewModel<Session2ViewModel>()
 
         val nameText = viewModel.nameText.collectAsState().value
         val phoneText = viewModel.phoneText.collectAsState().value
@@ -33,9 +30,9 @@ class SignUpScreen: Screen {
         val repPassVisible = viewModel.repPasswordVisible.collectAsState().value
         val repPassText = viewModel.repeatPasswordText.collectAsState().value
         val checked = viewModel.checked.collectAsState().value
-        val allFull = viewModel.isEnabled
-        val regError = viewModel.regError.collectAsState().value
-        val isSigningUp = viewModel.isSigningUp.collectAsState().value
+        val allFull = viewModel.isEnabledSignUp
+        var regError = viewModel.regError.collectAsState().value
+        val userList = viewModel.userList
 
         SignUp(
             nameText = nameText,
@@ -63,13 +60,25 @@ class SignUpScreen: Screen {
             allFull = allFull,
 
             onSignUp = {
-                viewModel.signUp()
-                if (isSigningUp && regError == null ){
-                navigator?.push(SignInScreen())
+                when {
+                    !viewModel.checkEmail(emailText) -> {
+                        regError = true
+                    }
+
+                    repPassText != passwordText -> {
+                        regError = true
+                    }
+                    userList.value.any { it.email == emailText} -> {
+                        regError = true
+                    }
+                    else -> {
+                        Log.d("SignUpScreen", "Попытка регистрации с email: $emailText и паролем: $passwordText")
+                        viewModel.signUp()
+                        navigator?.push(SignInScreen())
+                    }
                 }
-                       },
+            },
             onSignIn = {navigator?.push(SignInScreen())},
         )
-
     }
 }

@@ -1,16 +1,19 @@
 package com.example.oech_app.ui.session_2
 
-import androidx.compose.runtime.mutableStateOf
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.oech_app.data.Users
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+
 class Session2ViewModel: ViewModel() {
 
-    private val userList = mutableListOf<Users>()
+    private val _userList = MutableStateFlow<List<Users>>(emptyList())
+    val userList: StateFlow<List<Users>> get() = _userList
 
     private val _nameText = MutableStateFlow("")
     val nameText = _nameText.asStateFlow()
@@ -39,22 +42,17 @@ class Session2ViewModel: ViewModel() {
     private var _codeText = List(6) { MutableStateFlow("") }
     var codeText = _codeText.map { it.asStateFlow() }
 
-    val isEnabled: Boolean
-        get() = allFull() && checked.value
+    val isEnabledSignUp: Boolean
+        get() = allFull(nameText, phoneText, emailText, passwordText, repeatPasswordText) && checked.value
 
-    private var _regError = MutableStateFlow<String?>(null)
-    var regError = _regError.asStateFlow()
+    val isEnabledLogIn: Boolean
+        get() = allFull(emailText, passwordText)
 
-    private var _isSigningUp = MutableStateFlow(false)
-    var isSigningUp = _isSigningUp.asStateFlow()
+    private val _regError = MutableStateFlow(false)
+    val regError = _regError.asStateFlow()
 
     fun signUp() {
         viewModelScope.launch {
-            _regError.value = null
-
-        if (!checkEmail(emailText.value)){
-            _regError.value = "Некорректный адрес почты"
-        }
 
         val user = Users(
             name = nameText.value,
@@ -62,29 +60,28 @@ class Session2ViewModel: ViewModel() {
             email = emailText.value,
             password = passwordText.value
         )
-        if (!allFull()){
-            _regError.value = "Пожалуйста, заполните все поля"
-        }
-        if (userList.any { it.email == user.email}) {
-            _regError.value = "Пользователь с таким email уже зарегистрирован."
+        if (_userList.value.any { it.email == user.email}) {
+            _regError.value = true
         } else {
-            userList.add(user)
-            _regError.value = null
-            _isSigningUp.value = true
+            _userList.value += user
+            _regError.value = false
+            Log.d("Session2ViewModel", "Новый пользователь зарегистрирован: $user")
+            Log.d("Session2ViewModel", "Текущий список пользователей: ${_userList.value}")
             }
         }
     }
     fun signIn(email: String, password: String): Users?{
-        return userList.find { it.email == email && it.password == password }
+        Log.d("Session2ViewModel", "Текущий список пользователей: ${_userList.value}")
+        val user = _userList.value.find {
+            Log.d("Session2ViewModel", "Проверка пользователя: email=${it.email}, пароль=${it.password}")
+            it.email == email && it.password == password }
+        Log.d("Session2ViewModel", "Попытка входа пользователем: $email. Успех: ${user != null}")
+        return user
     }
 
 
-    private fun allFull(): Boolean {
-        return nameText.value.isNotBlank() &&
-                phoneText.value.isNotBlank() &&
-                emailText.value.isNotBlank() &&
-                passwordText.value.isNotBlank() &&
-                repeatPasswordText.value.isNotBlank()
+    private fun allFull(vararg fields: StateFlow<String>): Boolean {
+        return fields.all {it.value.isNotBlank()}
     }
 
     fun onNameChange(text: String){
@@ -100,7 +97,7 @@ class Session2ViewModel: ViewModel() {
     fun onEmailChange(text: String){
         _emailText.value = text
     }
-    private fun checkEmail(email: String): Boolean{
+    fun checkEmail(email: String): Boolean{
         val emailPattern = "^[a-z0-9]+@[a-z0-9]+\\.ru$"
         val regex = Regex(emailPattern)
 
