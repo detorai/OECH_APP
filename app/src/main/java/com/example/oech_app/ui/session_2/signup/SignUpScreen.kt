@@ -1,6 +1,5 @@
 package com.example.oech_app.ui.session_2.signup
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.runtime.Composable
@@ -12,7 +11,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 
-class SignUpScreen: Screen {
+class SignUpScreen(private val viewModel: Session2ViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
@@ -20,19 +19,18 @@ class SignUpScreen: Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
-        val viewModel = viewModel<Session2ViewModel>()
 
         val nameText = viewModel.nameText.collectAsState().value
         val phoneText = viewModel.phoneText.collectAsState().value
-        val emailText = viewModel.emailText.collectAsState().value
-        val passwordText = viewModel.passwordText.collectAsState().value
-        val passVisible = viewModel.passwordVisible.collectAsState().value
-        val repPassVisible = viewModel.repPasswordVisible.collectAsState().value
-        val repPassText = viewModel.repeatPasswordText.collectAsState().value
-        val checked = viewModel.checked.collectAsState().value
+        val emailText = viewModel.signUpEmail.collectAsState().value
+        val passwordText = viewModel.passwordSignUp.collectAsState().value
+        val passVisible = viewModel.passwordSUVisible.collectAsState().value
+        val repPassVisible = viewModel.repPasswordSUVisible.collectAsState().value
+        val repPassText = viewModel.repeatPasswordSU.collectAsState().value
+        val checked = viewModel.checkedSU.collectAsState().value
         val allFull = viewModel.isEnabledSignUp
         var regError = viewModel.regError.collectAsState().value
-        val userList = viewModel.userList
+        val userList = viewModel.userList.collectAsState().value
 
         SignUp(
             nameText = nameText,
@@ -42,20 +40,20 @@ class SignUpScreen: Screen {
             onPhoneChange = viewModel:: onPhoneChange,
 
             emailText = emailText,
-            onEmailChange = viewModel:: onEmailChange,
+            onEmailChange = viewModel:: onSUEmailChange,
 
             passwordText = passwordText,
-            onPasswordChange = viewModel:: onPasswordChange,
-            onClickTrailing1 = viewModel:: onPasswordVisible,
+            onPasswordChange = viewModel:: onPasswordSUChange,
+            onClickTrailing1 = viewModel:: onPasswordSUVisible,
             passVisible = passVisible,
 
             repeatPasswordText = repPassText,
-            onRepPasswordChange = viewModel:: onRepPasswordChange,
-            onClickTrailing2 = viewModel:: onRepPasswordVisible,
+            onRepPasswordChange = viewModel:: onRepPasswordSUChange,
+            onClickTrailing2 = viewModel:: onRepPasswordSUVisible,
             repPassVisible = repPassVisible,
 
             checked = checked,
-            onCheckedChange = viewModel::onCheckedChange,
+            onCheckedChange = viewModel::onCheckedSUChange,
 
             allFull = allFull,
 
@@ -68,17 +66,22 @@ class SignUpScreen: Screen {
                     repPassText != passwordText -> {
                         regError = true
                     }
-                    userList.value.any { it.email == emailText} -> {
+                    userList.any { it.email == emailText} -> {
                         regError = true
                     }
                     else -> {
                         Log.d("SignUpScreen", "Попытка регистрации с email: $emailText и паролем: $passwordText")
-                        viewModel.signUp()
-                        navigator?.push(SignInScreen())
+                        viewModel.signUp(
+                            name = nameText,
+                            phone = phoneText,
+                            email = emailText,
+                            password = passwordText
+                        )
+                        navigator?.push(SignInScreen(viewModel))
                     }
                 }
             },
-            onSignIn = {navigator?.push(SignInScreen())},
+            onSignIn = {navigator?.push(SignInScreen(viewModel))},
         )
     }
 }

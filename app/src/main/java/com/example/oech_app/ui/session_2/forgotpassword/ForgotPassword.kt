@@ -22,12 +22,12 @@ import com.example.oech_app.ui.theme.GrayLighter
 
 @Composable
 fun ForgotPassword (
-    fnValue: String,
-    fnOnChange: (String)-> Unit,
+    emailText: String,
+    onEmailChange: (String)-> Unit,
     onSignIn: () -> Unit,
     onSendOTP: () -> Unit
 ) {
-    val allFull = fnValue.isNotBlank()
+    val allFull = emailText.isNotBlank()
 
     Column(
         verticalArrangement = Arrangement.Top,
@@ -44,8 +44,8 @@ fun ForgotPassword (
                     .padding(0.dp, 0.dp, 0.dp, 56.dp)
             )
             TextFieldRow(
-                value = fnValue,
-                onValueChange = fnOnChange,
+                value = emailText,
+                onValueChange = onEmailChange,
                 placeholder = {
                     Text(
                         "***********@mail.com",

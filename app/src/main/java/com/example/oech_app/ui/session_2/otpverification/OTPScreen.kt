@@ -6,24 +6,34 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
+import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_2.newpassword.NewPasswordScreen
 
-class OTPScreen: Screen {
+class OTPScreen(private val viewModel: Session2ViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
-    private val viewModel = OTPViewModel()
+
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
-
         val codeText = viewModel.codeText.map { it.collectAsState("") }.map { it.value }
+        var otpError = viewModel.otpError.collectAsState().value
 
         OTPVerification(
             codeText = codeText,
-            onClick = {},
+            onClick = {
+
+            },
             onValueChange = viewModel::onCodeChange,
-            onSetPass = {navigator?.push(NewPasswordScreen())}
+            onSetPass = {
+                when {
+                    viewModel.checkOTP() -> {
+                        otpError = true
+                    }
+                    else -> navigator?.push(NewPasswordScreen())
+                }
+            }
         )
     }
 }

@@ -4,15 +4,34 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import cafe.adriel.voyager.navigator.Navigator
+import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.ui.session_2.forgotpassword.ForgotPasswordScreen
+import com.example.oech_app.ui.session_2.home.HomeScreen
+import com.example.oech_app.ui.session_2.newpassword.NewPasswordScreen
+import com.example.oech_app.ui.session_2.otpverification.OTPScreen
+import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: Session2ViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Navigator(SignUpScreen())
+            Navigator(
+                screens = listOf(
+                    HomeScreen(),
+                    NewPasswordScreen(),
+                    OTPScreen(viewModel),
+                    ForgotPasswordScreen(viewModel),
+                    SignInScreen(viewModel),
+                    SignUpScreen(viewModel)
+                )
+            )
         }
     }
 }
