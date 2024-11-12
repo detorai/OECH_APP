@@ -1,5 +1,6 @@
 package com.example.oech_app.ui.session_2.forgotpassword
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import cafe.adriel.voyager.core.screen.Screen
@@ -19,6 +20,7 @@ class ForgotPasswordScreen(private val viewModel: Session2ViewModel): Screen {
         val emailText = viewModel.forgotPassEmail.collectAsState().value
         val users = viewModel.userList.collectAsState().value
         var emailError = viewModel.emailError.collectAsState().value
+
 
         ForgotPassword(
             emailText = emailText,

@@ -97,6 +97,7 @@ class Session2ViewModel: ViewModel() {
         _repPasswordSUVisible.value = !_repPasswordSUVisible.value
     }
 
+
     private val _passwordSignIn = MutableStateFlow("")
     val passwordSignIn = _passwordSignIn.asStateFlow()
 
@@ -108,6 +109,34 @@ class Session2ViewModel: ViewModel() {
     }
     fun onPasswordSIVisible(){
         _passwordSIVisible.value = !_passwordSIVisible.value
+    }
+
+
+    private val _passwordNew = MutableStateFlow("")
+    val passwordNew = _passwordNew.asStateFlow()
+
+    private var _passwordNewVisible = MutableStateFlow(false)
+    var passwordNewVisible = _passwordNewVisible.asStateFlow()
+
+    fun onPasswordNewChange(text: String){
+        _passwordNew.value = text
+    }
+    fun onPasswordNewVisible(){
+        _passwordNewVisible.value = !_passwordNewVisible.value
+    }
+
+
+    private val _repeatPasswordNew = MutableStateFlow("")
+    val repeatPasswordNew = _repeatPasswordNew.asStateFlow()
+
+    private var _repPasswordNewVisible = MutableStateFlow(false)
+    var repPasswordNewVisible = _repPasswordNewVisible.asStateFlow()
+
+    fun onRepPasswordNewChange(text: String){
+        _repeatPasswordNew.value = text
+    }
+    fun onRepPasswordNewVisible(){
+        _repPasswordNewVisible.value = !_repPasswordNewVisible.value
     }
 
 
@@ -132,7 +161,10 @@ class Session2ViewModel: ViewModel() {
         get() = allFull(nameText, phoneText, signUpEmail, passwordSignUp, repeatPasswordSU) && checkedSU.value
 
     val isEnabledLogIn: Boolean
-        get() = allFull(signUpEmail, passwordSignUp)
+        get() = allFull(logInEmail, passwordSignIn)
+
+    val isEnabledNewPass: Boolean
+        get() = allFull(passwordNew, repeatPasswordNew)
 
     private fun allFull(vararg fields: StateFlow<String>): Boolean {
         return fields.all {it.value.isNotBlank()}
@@ -195,7 +227,7 @@ class Session2ViewModel: ViewModel() {
     private var _codeText = List(6) { MutableStateFlow("") }
     var codeText = _codeText.map { it.asStateFlow() }
 
-    private var codeOTP = mutableStateOf<List<Int>>(emptyList())
+    var codeOTP = mutableStateOf<List<Int>>(emptyList())
 
     private val _emailError = MutableStateFlow(false)
     val emailError = _emailError.asStateFlow()
@@ -215,12 +247,29 @@ class Session2ViewModel: ViewModel() {
 
     fun sendOTP(email: String){
         codeOTP.value = genOTP()
-        Log.d("OTP CODE", "email:$email\nOTP Code:$codeOTP")
+        _emailForChangePass.value = email
+        Log.d("OTP CODE", "email:$email\nOTP Code:${codeOTP.value.joinToString { it.toString() }}")
     }
 
     fun checkOTP(): Boolean {
         val enterCode = _codeText.joinToString(""){it.value}
-        val otpString = codeOTP.value.joinToString { it.toString() }
+        val otpString = codeOTP.value.joinToString("") { it.toString() }
         return enterCode == otpString
+    }
+
+    //Change User Password
+    private var _emailForChangePass = MutableStateFlow("")
+    var emailForChangePass = _emailForChangePass.asStateFlow()
+
+    private var _newPassError = MutableStateFlow(false)
+    var newPassError = _newPassError.asStateFlow()
+
+    fun changePass (email: String, password: String){
+            val user = _userList.value.find { it.email == email }
+            val salt = genSalt()
+            val passHash = hashPass(password, salt)
+            user?.password = passHash
+            user?.salt = salt
+            Log.d("New Password", "New Pass: ${user?.password}\n Users: ${userList.value}")
     }
 }

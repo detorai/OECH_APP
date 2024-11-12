@@ -19,19 +19,22 @@ class OTPScreen(private val viewModel: Session2ViewModel): Screen {
         val navigator = LocalNavigator.current
         val codeText = viewModel.codeText.map { it.collectAsState("") }.map { it.value }
         var otpError = viewModel.otpError.collectAsState().value
+        val email = viewModel.emailForChangePass.collectAsState().value
 
         OTPVerification(
             codeText = codeText,
             onClick = {
-
+                    viewModel.sendOTP(email)
             },
             onValueChange = viewModel::onCodeChange,
             onSetPass = {
                 when {
-                    viewModel.checkOTP() -> {
+                    !viewModel.checkOTP() -> {
                         otpError = true
                     }
-                    else -> navigator?.push(NewPasswordScreen())
+                    else -> {
+                        navigator?.push(NewPasswordScreen(viewModel))
+                    }
                 }
             }
         )

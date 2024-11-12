@@ -16,10 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.oech_app.common.buttons.PrimaryButton
 import com.example.oech_app.ui.session_2.common.ScreenLabel
 import com.example.oech_app.ui.session_2.common.TextFieldRow
+import com.example.oech_app.ui.theme.GrayLighter
 import com.example.session_1.R
 
 @Composable
@@ -30,9 +34,11 @@ fun NewPassword(
     onPasswordChange: (String) -> Unit,
     onClickTrailing1: () -> Unit,
     onClickTrailing2: () -> Unit,
-    onLogIn: () -> Unit
+    onLogIn: () -> Unit,
+    passVisible: Boolean,
+    repPassVisible: Boolean,
+    allFull: Boolean
 ){
-    val allFull = passwordText.isNotBlank() && repeatPasswordText.isNotBlank()
 
     Column(
         verticalArrangement = Arrangement.Top,
@@ -57,8 +63,18 @@ fun NewPassword(
             placeholder = {
                 Text(
                     "**********",
+                    color = GrayLighter,
+                    fontSize = 14.sp,
+                    lineHeight = 16.sp
                 )
-                          },
+            },
+            visual =
+            if (passVisible){
+                VisualTransformation.None
+            }
+            else {
+                PasswordVisualTransformation()
+            },
             trailingIcon = {
                 IconButton(
                     onClick = onClickTrailing1
@@ -78,7 +94,17 @@ fun NewPassword(
             placeholder = {
                 Text(
                     "**********",
+                    color = GrayLighter,
+                    fontSize = 14.sp,
+                    lineHeight = 16.sp
                 )
+            },
+            visual =
+            if (repPassVisible){
+                VisualTransformation.None
+            }
+            else {
+                PasswordVisualTransformation()
             },
             trailingIcon = {
                 IconButton(

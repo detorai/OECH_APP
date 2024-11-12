@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
             Navigator(
                 screens = listOf(
                     HomeScreen(),
-                    NewPasswordScreen(),
+                    NewPasswordScreen(viewModel),
                     OTPScreen(viewModel),
                     ForgotPasswordScreen(viewModel),
                     SignInScreen(viewModel),
