@@ -6,7 +6,7 @@ import androidx.compose.runtime.collectAsState
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.example.oech_app.ui.session_2.Session2ViewModel
-import com.example.oech_app.ui.session_2.home.HomeScreen
+import com.example.oech_app.ui.session_3.home.HomeScreen
 
 class NewPasswordScreen(private val viewModel: Session2ViewModel): Screen {
     @Composable
@@ -17,8 +17,10 @@ class NewPasswordScreen(private val viewModel: Session2ViewModel): Screen {
         val repPassVisible = viewModel.repPasswordNewVisible.collectAsState().value
         val passVisible = viewModel.passwordNewVisible.collectAsState().value
         val allFull = viewModel.isEnabledNewPass
-        var newPassError = viewModel.newPassError.collectAsState().value
+        var field1 = viewModel.password2Error.collectAsState().value
+        var field2 = viewModel.repPass2Error.collectAsState().value
         val emailForChangePass = viewModel.emailForChangePass.collectAsState().value
+
 
         NewPassword(
             passwordText = passwordText,
@@ -35,16 +37,20 @@ class NewPasswordScreen(private val viewModel: Session2ViewModel): Screen {
 
             onLogIn = {
                 when {
-                    passwordText != repeatPasswordText -> {
-                        newPassError = true
+                    repeatPasswordText != passwordText -> {
+                        field2 = true
                     }
                     else -> {
                         Log.d("Email For Change", "Email: $emailForChangePass")
                         viewModel.changePass(emailForChangePass, passwordText)
+                        field1 = false
+                        field2 = false
                         navigator?.push(HomeScreen())
                     }
                 }
-            }
+            },
+            field1 = field1,
+            field2 = field2
         )
     }
 }

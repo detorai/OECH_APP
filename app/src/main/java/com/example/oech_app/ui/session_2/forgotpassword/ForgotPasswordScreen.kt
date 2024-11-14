@@ -19,7 +19,7 @@ class ForgotPasswordScreen(private val viewModel: Session2ViewModel): Screen {
         val navigator = LocalNavigator.current
         val emailText = viewModel.forgotPassEmail.collectAsState().value
         val users = viewModel.userList.collectAsState().value
-        var emailError = viewModel.emailError.collectAsState().value
+        var field1 = viewModel.email3Error.collectAsState().value
 
 
         ForgotPassword(
@@ -29,14 +29,16 @@ class ForgotPasswordScreen(private val viewModel: Session2ViewModel): Screen {
             onSendOTP = {
                 when {
                     users.any{it.email != emailText} -> {
-                        emailError = true
+                        field1 = true
                     }
-                else -> {
+                    else -> {
                     viewModel.sendOTP(emailText)
+                    field1 = false
                     navigator?.push(OTPScreen(viewModel))
+                    }
                 }
-                }
-            }
+            },
+            field1 = field1
         )
     }
 }

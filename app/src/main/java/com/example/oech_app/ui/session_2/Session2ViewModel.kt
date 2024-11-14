@@ -229,11 +229,7 @@ class Session2ViewModel: ViewModel() {
 
     var codeOTP = mutableStateOf<List<Int>>(emptyList())
 
-    private val _emailError = MutableStateFlow(false)
-    val emailError = _emailError.asStateFlow()
 
-    private val _otpError = MutableStateFlow(false)
-    val otpError = _otpError.asStateFlow()
 
     fun onCodeChange(index: Int, text: String) {
         if (index in _codeText.indices) {
@@ -261,15 +257,47 @@ class Session2ViewModel: ViewModel() {
     private var _emailForChangePass = MutableStateFlow("")
     var emailForChangePass = _emailForChangePass.asStateFlow()
 
-    private var _newPassError = MutableStateFlow(false)
-    var newPassError = _newPassError.asStateFlow()
-
     fun changePass (email: String, password: String){
             val user = _userList.value.find { it.email == email }
             val salt = genSalt()
             val passHash = hashPass(password, salt)
-            user?.password = passHash
-            user?.salt = salt
-            Log.d("New Password", "New Pass: ${user?.password}\n Users: ${userList.value}")
+        if (!verifyPass(storedHash = user!!.password, salt = user.salt, password = password)) {
+            user.password = passHash
+            user.salt = salt
+            Log.d("New Password", "New Pass: ${user.password}\n Users: ${userList.value}")
+        }
+        else {
+            Log.e("Password", "Type new password")
+
+        }
     }
+
+
+    //Errors States
+    private var _phoneError = MutableStateFlow(false)
+    var phoneError = _phoneError.asStateFlow()
+
+    private var _email1Error = MutableStateFlow(false)
+    var email1Error = _email1Error.asStateFlow()
+
+    private var _email2Error = MutableStateFlow(false)
+    var email2Error = _email2Error.asStateFlow()
+
+    private var _email3Error = MutableStateFlow(false)
+    var email3Error = _email3Error.asStateFlow()
+
+    private var _password1Error = MutableStateFlow(false)
+    var password1Error = _password1Error.asStateFlow()
+
+    private var _password2Error = MutableStateFlow(false)
+    var password2Error = _password2Error.asStateFlow()
+
+    private var _repPass1Error = MutableStateFlow(false)
+    var repPass1Error = _repPass1Error.asStateFlow()
+
+    private var _repPass2Error = MutableStateFlow(false)
+    var repPass2Error = _repPass2Error.asStateFlow()
+
+    private val _otpError = MutableStateFlow(false)
+    val otpError = _otpError.asStateFlow()
 }

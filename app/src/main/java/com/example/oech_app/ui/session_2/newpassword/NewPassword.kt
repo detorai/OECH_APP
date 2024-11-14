@@ -37,7 +37,9 @@ fun NewPassword(
     onLogIn: () -> Unit,
     passVisible: Boolean,
     repPassVisible: Boolean,
-    allFull: Boolean
+    allFull: Boolean,
+    field1: Boolean,
+    field2: Boolean
 ){
 
     Column(
@@ -85,7 +87,10 @@ fun NewPassword(
                     )
                 }
             },
-            modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(0.dp, 0.dp, 0.dp, 24.dp)
+            modifier = Modifier.fillMaxWidth()
+                .wrapContentHeight()
+                .padding(0.dp, 0.dp, 0.dp, 24.dp),
+            field = field1
         )
         TextFieldRow(
             value = repeatPasswordText,
@@ -116,7 +121,10 @@ fun NewPassword(
                     )
                 }
             },
-            modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(0.dp, 0.dp, 0.dp, 71.dp)
+            modifier = Modifier.fillMaxWidth()
+                .wrapContentHeight()
+                .padding(0.dp, 0.dp, 0.dp, 71.dp),
+            field = field2
         )
         PrimaryButton(
             onClickPrimary = onLogIn,

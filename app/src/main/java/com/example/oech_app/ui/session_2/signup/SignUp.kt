@@ -1,12 +1,14 @@
 package com.example.oech_app.ui.session_2.signup
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -51,7 +53,10 @@ fun SignUp(
     onCheckedChange: (Boolean) -> Unit,
     onSignUp: () -> Unit,
     onSignIn: () -> Unit,
-    allFull: Boolean
+    allFull: Boolean,
+    field1: Boolean,
+    field2: Boolean,
+    field3: Boolean,
 ){
 
     Column(
@@ -85,6 +90,7 @@ fun SignUp(
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
                 label = "Full name",
+                field = false
             )
             TextFieldRow(
                 value = phoneText,
@@ -100,8 +106,17 @@ fun SignUp(
                 trailingIcon = {},
                 modifier = Modifier
                     .wrapContentHeight()
-                    .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Phone Number"
+                    .padding(0.dp, 0.dp, 0.dp, 18.dp)
+                    .border(
+                        width = 1.dp,
+                        shape = RoundedCornerShape(4.dp),
+                        color = when (field1) {
+                            true -> Color.Red
+                            false -> Color.Gray
+                        }
+                    ),
+                label = "Phone Number",
+                field = field1
             )
             TextFieldRow(
                 value = emailText,
@@ -118,7 +133,8 @@ fun SignUp(
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Email Address"
+                label = "Email Address",
+                field = field2
             )
             TextFieldRow(
                 value = passwordText,
@@ -152,7 +168,8 @@ fun SignUp(
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Password"
+                label = "Password",
+                field = false
             )
             TextFieldRow(
                 value = repeatPasswordText,
@@ -185,7 +202,8 @@ fun SignUp(
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 37.dp),
-                label = "Confirm Password"
+                label = "Confirm Password",
+                field = field3
             )
             CheckBoxRow(
                 checked = checked,

@@ -53,7 +53,9 @@ fun SignIn (
     onLogIn: () -> Unit,
     onSignUp: () -> Unit,
     enabled: Boolean,
-    passVisible: Boolean
+    passVisible: Boolean,
+    field1: Boolean,
+    field2: Boolean
 ){
     Column(
         verticalArrangement = Arrangement.Top,
@@ -87,7 +89,8 @@ fun SignIn (
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Email Address"
+                label = "Email Address",
+                field = field1
             )
             TextFieldRow(
                 value = passwordText,
@@ -120,7 +123,8 @@ fun SignIn (
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(0.dp, 0.dp, 0.dp, 18.dp),
-                label = "Password"
+                label = "Password",
+                field = field2
             )
             Row(
                 modifier = Modifier.fillMaxWidth()

@@ -9,7 +9,7 @@ import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_2.forgotpassword.ForgotPasswordScreen
-import com.example.oech_app.ui.session_2.home.HomeScreen
+import com.example.oech_app.ui.session_3.home.HomeScreen
 
 class SignInScreen(private val viewModel: Session2ViewModel): Screen {
 
@@ -24,8 +24,8 @@ class SignInScreen(private val viewModel: Session2ViewModel): Screen {
         val passwordVisible = viewModel.passwordSIVisible.collectAsState().value
         val checked = viewModel.checkedSI.collectAsState().value
         val allFull = viewModel.isEnabledLogIn
-        var regError = viewModel.regError.collectAsState().value
-        val userList = viewModel.userList.collectAsState().value
+        var field1 = viewModel.email2Error.collectAsState().value
+        var field2 = viewModel.password1Error.collectAsState().value
 
         SignIn(
             emailText = emailText,
@@ -44,13 +44,18 @@ class SignInScreen(private val viewModel: Session2ViewModel): Screen {
                 Log.d("SignInScreen", "Результат входа: ${user != null}")
                 if (user != null) {
                     navigator?.push(HomeScreen())
+                    field1 = false
+                    field2 = false
                 } else {
-                    regError = true
+                    field1 = true
+                    field2 = true
                 }
             },
             onForgotPass = {navigator?.push(ForgotPasswordScreen(viewModel))},
             enabled = allFull,
-            passVisible = passwordVisible
+            passVisible = passwordVisible,
+            field1 = field1,
+            field2 = field2
         )
     }
 }

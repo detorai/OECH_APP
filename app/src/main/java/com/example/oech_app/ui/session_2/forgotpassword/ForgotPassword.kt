@@ -25,7 +25,8 @@ fun ForgotPassword (
     emailText: String,
     onEmailChange: (String)-> Unit,
     onSignIn: () -> Unit,
-    onSendOTP: () -> Unit
+    onSendOTP: () -> Unit,
+    field1: Boolean
 ) {
     val allFull = emailText.isNotBlank()
 
@@ -57,7 +58,8 @@ fun ForgotPassword (
                 trailingIcon = {},
                 modifier = Modifier
                     .wrapContentHeight(),
-                label = "Email Address"
+                label = "Email Address",
+                field = field1
             )
         }
         Column(

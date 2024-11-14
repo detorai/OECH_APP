@@ -9,6 +9,7 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -24,7 +25,8 @@ fun TextFieldRow(
     placeholder:@Composable () -> Unit,
     trailingIcon:@Composable () -> Unit,
     modifier: Modifier,
-    visual: VisualTransformation = VisualTransformation.None
+    visual: VisualTransformation = VisualTransformation.None,
+    field: Boolean
 ){
     Text(
         label,
@@ -45,7 +47,10 @@ fun TextFieldRow(
         modifier = modifier.border(
             width = 1.dp,
             shape = RoundedCornerShape(4.dp),
-            color = Gray
+            color = when (field) {
+                true -> Color.Red
+                false -> Color.Gray
+            }
         ).fillMaxWidth(),
     )
 }

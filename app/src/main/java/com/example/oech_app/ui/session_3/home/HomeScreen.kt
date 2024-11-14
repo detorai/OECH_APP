@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_2.home
+package com.example.oech_app.ui.session_3.home
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen

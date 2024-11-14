@@ -29,8 +29,10 @@ class SignUpScreen(private val viewModel: Session2ViewModel): Screen {
         val repPassText = viewModel.repeatPasswordSU.collectAsState().value
         val checked = viewModel.checkedSU.collectAsState().value
         val allFull = viewModel.isEnabledSignUp
-        var regError = viewModel.regError.collectAsState().value
         val userList = viewModel.userList.collectAsState().value
+        var field1 = viewModel.phoneError.collectAsState().value
+        var field2 = viewModel.email1Error.collectAsState().value
+        var field3 = viewModel.repPass1Error.collectAsState().value
 
         SignUp(
             nameText = nameText,
@@ -59,15 +61,17 @@ class SignUpScreen(private val viewModel: Session2ViewModel): Screen {
 
             onSignUp = {
                 when {
-                    !viewModel.checkEmail(emailText) -> {
-                        regError = true
+                    userList.any {it.phone == phoneText} -> {
+                        field1 = true
                     }
-
-                    repPassText != passwordText -> {
-                        regError = true
+                    !viewModel.checkEmail(emailText) -> {
+                        field2 = true
                     }
                     userList.any { it.email == emailText} -> {
-                        regError = true
+                        field2 = true
+                    }
+                    repPassText != passwordText -> {
+                        field3 = true
                     }
                     else -> {
                         Log.d("SignUpScreen", "Попытка регистрации с email: $emailText и паролем: $passwordText")
@@ -77,11 +81,17 @@ class SignUpScreen(private val viewModel: Session2ViewModel): Screen {
                             email = emailText,
                             password = passwordText
                         )
+                        field1 = false
+                        field2 = false
+                        field3 = false
                         navigator?.push(SignInScreen(viewModel))
                     }
                 }
             },
             onSignIn = {navigator?.push(SignInScreen(viewModel))},
+            field1 = field1,
+            field2 = field2,
+            field3 = field3
         )
     }
 }

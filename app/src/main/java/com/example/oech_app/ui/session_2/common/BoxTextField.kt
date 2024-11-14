@@ -31,7 +31,8 @@ fun BoxTextField(
     onValueChange: (String) -> Unit,
     onNextFocus: () -> Unit,
     modifier: Modifier,
-    focusRequester: FocusRequester
+    focusRequester: FocusRequester,
+    field1: Boolean
 ){
     var borderColor by remember { mutableStateOf(Gray) }
 
@@ -44,7 +45,8 @@ fun BoxTextField(
                     Gray
                 } else if (it.all { char -> char.isDigit() }) {
                     Primary
-                } else {
+                }
+                else {
                     Color.Red
                 }
             }
@@ -59,7 +61,12 @@ fun BoxTextField(
                     .size(32.dp, 32.dp)
                     .border(
                         1.dp,
+                        if (!field1){
                         borderColor
+                        }
+                        else {
+                            Color.Red
+                        }
                     )
                     .focusable(),
                 contentAlignment = Alignment.Center
@@ -77,7 +84,8 @@ fun FullBoxTextField(
     numFields: Int = 6,
     modifier: Modifier,
     codeText: List<String>,
-    onValueChange: (Int, String) -> Unit
+    onValueChange: (Int, String) -> Unit,
+    field1: Boolean
 ) {
     val focusRequesters = List(numFields) { FocusRequester() }
 
@@ -96,7 +104,8 @@ fun FullBoxTextField(
                     }
                 },
                 modifier = Modifier.focusRequester(focusRequesters[i]),
-                focusRequester = focusRequesters[i]
+                focusRequester = focusRequesters[i],
+                field1 = field1
             )
         }
     }

@@ -21,7 +21,8 @@ fun OTPVerification(
     codeText: List<String>,
     onValueChange: (Int, String) -> Unit,
     onClick: ()-> Unit,
-    onSetPass: () -> Unit
+    onSetPass: () -> Unit,
+    field1: Boolean
 ){
     Column(
         verticalArrangement = Arrangement.Top,
@@ -38,7 +39,8 @@ fun OTPVerification(
             FullBoxTextField(
                 codeText = codeText,
                 modifier = Modifier.fillMaxWidth().padding(0.dp, 0.dp, 0.dp, 12.dp),
-                onValueChange = onValueChange
+                onValueChange = onValueChange,
+                field1 = field1
             )
         }
         Column(
