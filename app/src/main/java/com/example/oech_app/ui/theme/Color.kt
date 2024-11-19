@@ -27,3 +27,7 @@ val TextDarker = Color(0xFF141414)
 //Gray Color
 val GrayLighter = Color(0xFFCFCFCF)
 val Gray = Color(0xFFA7A7A7)
+
+//DarkTheme
+val primaryDark = Color(0xFF000D1D)
+val secondaryDark = Color(0xFF001B3B)

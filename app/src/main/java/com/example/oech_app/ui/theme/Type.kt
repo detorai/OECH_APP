@@ -32,11 +32,3 @@ val Typography = Typography(
     )
     */
 )
-val HeadingBold24 = Typography(
-    bodyLarge = TextStyle(
-            fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Bold,
-            fontSize = 24.sp,
-            lineHeight = 24.sp,
-    )
-)

@@ -300,4 +300,9 @@ class Session2ViewModel: ViewModel() {
 
     private val _otpError = MutableStateFlow(false)
     val otpError = _otpError.asStateFlow()
+
+    var checked = mutableStateOf(false)
+    fun onCheckedChange(state: Boolean){
+        checked.value = !checked.value
+    }
 }

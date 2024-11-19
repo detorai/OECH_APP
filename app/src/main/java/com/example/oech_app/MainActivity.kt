@@ -1,22 +1,32 @@
 package com.example.oech_app
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import cafe.adriel.voyager.navigator.Navigator
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.example.oech_app.ui.session_1.onboarding.ob1.Onboarding1Screen
 import com.example.oech_app.ui.session_1.onboarding.ob2.OnBoarding2Screen
 import com.example.oech_app.ui.session_1.onboarding.ob3.Onboarding3Screen
 import com.example.oech_app.ui.session_1.splash.SplashScreen
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_2.forgotpassword.ForgotPasswordScreen
-import com.example.oech_app.ui.session_3.home.HomeScreen
 import com.example.oech_app.ui.session_2.newpassword.NewPasswordScreen
 import com.example.oech_app.ui.session_2.otpverification.OTPScreen
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
+import com.example.oech_app.ui.session_3.home.HomeScreen
+import com.example.oech_app.ui.session_3.tabs.HomeTab
+import com.example.oech_app.ui.session_3.tabs.ProfileTab
+import com.example.oech_app.ui.session_3.tabs.TabNavigationItem
+import com.example.oech_app.ui.theme.OECH_APPTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -40,9 +50,27 @@ class MainActivity : ComponentActivity() {
             SignUpScreen(viewModel)
         )
         setContent {
-            Navigator(
-                HomeScreen()
-            )
+            OECH_APPTheme(darkTheme = viewModel.checked.value) {
+                MainContent()
+            }
         }
     }
+}
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+private fun MainContent() {
+        TabNavigator(HomeTab) {
+            Scaffold(
+                content = {
+                    CurrentTab()
+                },
+                bottomBar = {
+                    BottomNavigation {
+                        TabNavigationItem(HomeTab)
+                        TabNavigationItem(ProfileTab)
+                    }
+                }
+            )
+        }
 }
