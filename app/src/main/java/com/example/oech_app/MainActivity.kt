@@ -49,17 +49,17 @@ class MainActivity : ComponentActivity() {
             SignInScreen(viewModel),
             SignUpScreen(viewModel)
         )
+
         setContent {
-            OECH_APPTheme(darkTheme = viewModel.checked.value) {
-                MainContent()
-            }
+                MainContent(viewModel)
         }
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-private fun MainContent() {
+private fun MainContent(viewModel: Session2ViewModel) {
+    val colors = viewModel.getColors(viewModel.checked.value)
         TabNavigator(HomeTab) {
             Scaffold(
                 content = {
@@ -67,8 +67,8 @@ private fun MainContent() {
                 },
                 bottomBar = {
                     BottomNavigation {
-                        TabNavigationItem(HomeTab)
-                        TabNavigationItem(ProfileTab)
+                        TabNavigationItem(HomeTab, colors.mainColor)
+                        TabNavigationItem(ProfileTab, colors.mainColor)
                     }
                 }
             )

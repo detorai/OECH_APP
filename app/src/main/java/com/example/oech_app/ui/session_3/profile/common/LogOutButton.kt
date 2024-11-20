@@ -1,5 +1,6 @@
 package com.example.oech_app.ui.session_3.profile.common
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -24,12 +26,15 @@ import com.example.session_1.R
 
 @Composable
 fun LogOutButton(
-    modifier: Modifier
+    modifier: Modifier,
+    mainColor: Color,
+    secondaryColor: Color,
+    textColor: Color
     ){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier.fillMaxWidth().wrapContentHeight().shadow(1.dp)
+        modifier = modifier.fillMaxWidth().wrapContentHeight().background(secondaryColor).shadow(1.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -43,11 +48,13 @@ fun LogOutButton(
                 Row {
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.a1),
-                        contentDescription = "icon"
+                        contentDescription = "icon",
+                        tint = Color.Red
                     )
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.a2),
-                        contentDescription = "icon"
+                        contentDescription = "icon",
+                        tint = Color.Red
                     )
                 }
             }
@@ -58,7 +65,7 @@ fun LogOutButton(
             ) {
                 Text(
                     text = "Log Out",
-                    color = TextLighter,
+                    color = textColor,
                     fontSize = 16.sp,
                     lineHeight = 16.sp,
                     fontWeight = FontWeight(500)
@@ -68,6 +75,7 @@ fun LogOutButton(
         Icon(
             Icons.Default.KeyboardArrowRight,
             contentDescription = "icon",
+            tint = textColor
         )
     }
 }

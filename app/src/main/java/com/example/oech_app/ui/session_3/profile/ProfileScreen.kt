@@ -1,10 +1,6 @@
 package com.example.oech_app.ui.session_3.profile
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
@@ -22,15 +18,18 @@ class ProfileScreen: Screen {
         val navigator = LocalNavigator.current
         val viewModel = viewModel<Session2ViewModel>()
 
-        var checked = viewModel.checked.value
-
+        val checked = viewModel.checked.value
+        val colors = viewModel.getColors(checked)
 
         Profile(
             name = "Ken",
             balance = "12313",
             image = R.drawable.profile_image,
             onCheckChange = viewModel:: onCheckedChange,
-            checked = checked
+            checked = checked,
+            mainColor = colors.mainColor,
+            secondaryColor = colors.secondaryColor,
+            textColor = colors.textColor
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.example.oech_app.ui.session_3.profile
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,14 +28,17 @@ fun Profile(
     balance: String,
     name: String,
     checked: Boolean,
-    onCheckChange: (Boolean) -> Unit
+    onCheckChange: (Boolean) -> Unit,
+    mainColor: Color,
+    secondaryColor: Color,
+    textColor: Color
 ) {
     Scaffold(
         topBar = {
             Row(
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth().height(108.dp).shadow(1.dp)
+                modifier = Modifier.fillMaxWidth().height(108.dp).background(secondaryColor).shadow(1.dp)
             ) {
                 Text(
                     "Profile",
@@ -55,7 +59,10 @@ fun Profile(
             balance = balance,
             image = image,
             checked = checked,
-            onCheckChange = onCheckChange
+            onCheckChange = onCheckChange,
+            mainColor = mainColor,
+            secondaryColor = secondaryColor,
+            textColor = textColor
         )
     }
 }

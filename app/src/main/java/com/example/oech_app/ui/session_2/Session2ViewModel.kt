@@ -2,9 +2,14 @@ package com.example.oech_app.ui.session_2
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.oech_app.data.ColorsScheme
 import com.example.oech_app.data.Users
+import com.example.oech_app.ui.theme.TextLighter
+import com.example.oech_app.ui.theme.primaryDark
+import com.example.oech_app.ui.theme.secondaryDark
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.codec.binary.Base64
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -304,5 +309,21 @@ class Session2ViewModel: ViewModel() {
     var checked = mutableStateOf(false)
     fun onCheckedChange(state: Boolean){
         checked.value = !checked.value
+    }
+
+    fun getColors(checked: Boolean): ColorsScheme{
+        return if (checked) {
+            ColorsScheme(
+                mainColor = primaryDark,
+                secondaryColor = secondaryDark,
+                textColor = Color.White
+            )
+        } else {
+            ColorsScheme(
+                mainColor = Color.White,
+                secondaryColor = Color.White,
+                textColor = TextLighter
+            )
+        }
     }
 }

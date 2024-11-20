@@ -11,6 +11,7 @@ activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 lifecycleViewmodelCompose = "2.8.7"
 material = "1.7.5"
+materialVersion = "1.12.0"
 ui = "1.7.5"
 uiTooling = "1.7.5"
 voyagerVersion = "1.1.0-beta02"
@@ -34,6 +35,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+material = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 voyager-bottom-sheet-navigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyagerVersion" }

@@ -25,12 +25,15 @@ import androidx.compose.ui.unit.sp
 fun NameAndImage(
     @DrawableRes image: Int,
     name: String,
-    balance: String
+    balance: String,
+    mainColor: Color,
+    secondaryColor: Color,
+    textColor: Color
 ){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.wrapContentWidth().wrapContentHeight()
+        modifier = Modifier.wrapContentWidth().wrapContentHeight().background(mainColor)
     ) {
         Image(
             painter = painterResource(image),
@@ -40,16 +43,21 @@ fun NameAndImage(
         Column(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.wrapContentHeight().padding(5.dp, 0.dp, 0.dp, 0.dp)
+            modifier = Modifier.wrapContentHeight().background(mainColor).padding(5.dp, 0.dp, 0.dp, 0.dp)
         ) {
             Text(
                 "Hello $name",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
-                lineHeight = 30.sp
+                lineHeight = 30.sp,
+                color = textColor
                 )
             Text(
-                "Current balance: $balance"
+                "Current balance: $balance",
+                fontSize = 12.sp,
+                fontWeight = FontWeight(400),
+                lineHeight = 16.sp,
+                color = textColor
             )
         }
     }

@@ -1,6 +1,7 @@
 package com.example.oech_app.ui.session_3.profile.common
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,25 +16,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.Gray
-import com.example.oech_app.ui.theme.TextLighter
 
 @Composable
 fun ProfileButton(
     @DrawableRes icon: Int,
     label: String,
     description: String,
-    modifier: Modifier
+    modifier: Modifier,
+    mainColor: Color,
+    secondaryColor: Color,
+    textColor: Color
 ){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier.fillMaxWidth().wrapContentHeight().shadow(1.dp)
+        modifier = modifier.fillMaxWidth().wrapContentHeight().background(secondaryColor).shadow(1.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -46,7 +50,8 @@ fun ProfileButton(
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(icon),
-                    contentDescription = "icon"
+                    contentDescription = "icon",
+                    tint = textColor
                 )
             }
             Column(
@@ -56,7 +61,7 @@ fun ProfileButton(
             ) {
                 Text(
                     text = label,
-                    color = TextLighter,
+                    color = textColor,
                     fontSize = 16.sp,
                     lineHeight = 16.sp,
                     fontWeight = FontWeight(500)
@@ -73,6 +78,7 @@ fun ProfileButton(
         Icon(
             Icons.Default.KeyboardArrowRight,
             contentDescription = "icon",
+            tint = textColor
         )
     }
 }

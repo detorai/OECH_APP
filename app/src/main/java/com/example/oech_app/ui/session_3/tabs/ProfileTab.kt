@@ -12,6 +12,7 @@ import com.example.oech_app.ui.session_3.profile.ProfileScreen
 import com.example.session_1.R
 
 object ProfileTab: Tab {
+    private fun readResolve(): Any = ProfileTab
 
 
     override val options: TabOptions

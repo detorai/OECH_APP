@@ -79,9 +79,9 @@ dependencies {
     implementation(libs.voyager.kodein)
     implementation(libs.voyager.rxjava)
     implementation (libs.androidx.activity.compose)
-    //noinspection GradleDependency
     implementation (libs.androidx.lifecycle.viewmodel.compose)
     implementation (libs.ui)
     implementation (libs.androidx.material)
     implementation (libs.ui.tooling)
+    implementation (libs.material)
 }
