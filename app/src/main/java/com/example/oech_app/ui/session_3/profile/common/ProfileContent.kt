@@ -2,6 +2,7 @@ package com.example.oech_app.ui.session_3.profile.common
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +30,9 @@ fun ProfileContent(
     onCheckChange: (Boolean) -> Unit,
     mainColor: Color,
     secondaryColor: Color,
-    textColor: Color
+    textColor: Color,
+    onClickBalance: ()-> Unit,
+    onBankClick: ()-> Unit
 ){
     Column(
         verticalArrangement = Arrangement.Center,
@@ -48,11 +52,13 @@ fun ProfileContent(
                 textColor = textColor,
                 secondaryColor = secondaryColor
             )
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.eye_slash),
-                contentDescription = "eye_slash",
-                tint = textColor
-            )
+            IconButton(onClickBalance) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(R.drawable.eye_slash),
+                    contentDescription = "eye_slash",
+                    tint = textColor
+                )
+            }
         }
         DarkModeRow(
             checked = checked,
@@ -92,7 +98,7 @@ fun ProfileContent(
             icon = R.drawable.wallet_3,
             label = "Card & Bank account settings",
             description = "change cards, delete card details",
-            modifier = Modifier.padding(0.dp, 12.dp, 0.dp, 0.dp),
+            modifier = Modifier.padding(0.dp, 12.dp, 0.dp, 0.dp).clickable { onBankClick() },
             mainColor = mainColor,
             secondaryColor = secondaryColor,
             textColor = textColor

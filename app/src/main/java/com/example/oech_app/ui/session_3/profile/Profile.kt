@@ -31,7 +31,9 @@ fun Profile(
     onCheckChange: (Boolean) -> Unit,
     mainColor: Color,
     secondaryColor: Color,
-    textColor: Color
+    textColor: Color,
+    onClickBalance: () -> Unit,
+    onBankClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -62,7 +64,9 @@ fun Profile(
             onCheckChange = onCheckChange,
             mainColor = mainColor,
             secondaryColor = secondaryColor,
-            textColor = textColor
+            textColor = textColor,
+            onClickBalance = onClickBalance,
+            onBankClick = onBankClick
         )
     }
 }

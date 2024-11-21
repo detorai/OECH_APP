@@ -1,10 +1,7 @@
 package com.example.oech_app.ui.session_2.common
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight

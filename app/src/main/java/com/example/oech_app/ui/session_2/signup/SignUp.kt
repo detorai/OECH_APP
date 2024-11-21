@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -31,6 +32,7 @@ import com.example.oech_app.ui.session_2.common.TextFieldRow
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.GrayLighter
 import com.example.oech_app.ui.theme.Primary
+import com.example.oech_app.ui.theme.Secondary
 import com.example.session_1.R
 
 @Composable
@@ -56,7 +58,7 @@ fun SignUp(
     allFull: Boolean,
     field1: Boolean,
     field2: Boolean,
-    field3: Boolean,
+    field3: Boolean
 ){
 
     Column(
@@ -65,7 +67,7 @@ fun SignUp(
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.Start,
-            modifier = Modifier.padding(23.dp, 75.dp, 23.dp, 0.dp)
+            modifier = Modifier.padding(23.dp, 55.dp, 23.dp, 0.dp)
         ) {
             ScreenLabel(
                 labelText = "Create an account",
@@ -220,7 +222,7 @@ fun SignUp(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(23.dp, 32.dp, 23.dp, 0.dp)
+                .padding(23.dp, 24.dp, 23.dp, 0.dp)
         ) {
             PrimaryButton(
                 modifier = Modifier
@@ -249,9 +251,12 @@ fun SignUp(
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.gmail),
                     contentDescription = "gmail",
-                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 28.dp)
+                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 28.dp).size(16.dp),
+                    tint = Secondary
                 )
             }
         }
     }
 }
+
+

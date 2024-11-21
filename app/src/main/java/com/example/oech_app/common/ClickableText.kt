@@ -9,6 +9,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.Primary
+import com.example.oech_app.ui.theme.Secondary
 
 @Composable
 fun ClickableString(

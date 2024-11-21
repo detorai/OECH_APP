@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.Gray
@@ -41,8 +42,15 @@ fun ScreenLabel(
             fontWeight = W500,
             lineHeight = 16.sp,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp),
             color = Gray
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewScreen(){
+    ScreenLabel(labelText = "Create an account",
+        description = "Complete the sign up process to get started",
+        modifier = Modifier)
 }
