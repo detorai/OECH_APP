@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.oech_app.common.AppTopBar
 import com.example.oech_app.ui.session_3.profile.common.ProfileContent
 import com.example.oech_app.ui.theme.Gray
 
@@ -37,20 +38,11 @@ fun Profile(
 ) {
     Scaffold(
         topBar = {
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth().height(108.dp).background(secondaryColor).shadow(1.dp)
-            ) {
-                Text(
-                    "Profile",
-                    color = Gray,
-                    fontWeight = FontWeight.W500,
-                    fontSize = 16.sp,
-                    lineHeight = 16.sp,
-                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 19.dp)
-                )
-            }
+            AppTopBar(
+                label = "Profile",
+                onClickBack = {},
+                secondaryColor = secondaryColor
+            )
         }
     ) {innerPadding ->
         Box(

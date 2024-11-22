@@ -11,10 +11,12 @@ import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.ui.session_3.add_payment_method.AddPayMethScreen
+import com.example.oech_app.ui.session_3.add_payment_method.AddPaymentMethod
 import com.example.session_1.R
 import kotlinx.coroutines.newSingleThreadContext
 
-class ProfileScreen: Screen {
+class ProfileScreen(): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
@@ -54,7 +56,7 @@ class ProfileScreen: Screen {
             onClickBalance = {
                 onClickBalance = !onClickBalance
             },
-            onBankClick = {}
+            onBankClick = {navigator?.push(AddPayMethScreen(viewModel))}
         )
     }
 }
