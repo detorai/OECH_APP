@@ -24,6 +24,7 @@ import com.example.oech_app.ui.session_2.otpverification.OTPScreen
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
+import com.example.oech_app.ui.session_3.send_a_package.SAPScreen
 import com.example.oech_app.ui.session_3.tabs.HomeTab
 import com.example.oech_app.ui.session_3.tabs.MainContent
 import com.example.oech_app.ui.session_3.tabs.ProfileTab
@@ -53,7 +54,7 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-                MainContent(viewModel)
+                Navigator(SAPScreen(viewModel))
         }
     }
 }

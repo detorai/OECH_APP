@@ -1,12 +1,13 @@
 package com.example.oech_app.ui.session_3.common
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults.buttonColors
@@ -19,7 +20,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.Primary
@@ -28,6 +28,7 @@ import com.example.session_1.R
 @Composable
 fun SelectDeliveryType(
     onClickPrimary: ()-> Unit,
+    onClickSecondly: () -> Unit,
     modifier: Modifier
 ){
     Column(
@@ -47,7 +48,7 @@ fun SelectDeliveryType(
         ){
             Button(
                 onClick = onClickPrimary,
-                modifier = Modifier.size(160.dp , 75.dp),
+                modifier = Modifier.size(165.dp , 80.dp),
                 colors = buttonColors(
                     containerColor = Primary,
                     contentColor = Color.White,
@@ -66,13 +67,14 @@ fun SelectDeliveryType(
                         contentDescription = "icon"
                     )
                     Text(
-                        "Instant delivery"
+                        "Instant delivery",
+                        modifier = Modifier.padding(top = 10.dp)
                     )
                 }
             }
             Button(
-                onClick = onClickPrimary,
-                modifier = Modifier.size(160.dp , 75.dp).shadow(2.dp),
+                onClick = onClickSecondly,
+                modifier = Modifier.size(165.dp , 80.dp).shadow(2.dp),
                 colors = buttonColors(
                     containerColor = Color.White,
                     contentColor = Gray,
@@ -85,25 +87,17 @@ fun SelectDeliveryType(
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
-                ) {
+                ){
                     Icon(
-                        imageVector = ImageVector.vectorResource(R.drawable.clock),
+                        imageVector = ImageVector.vectorResource(R.drawable.shedulte),
                         contentDescription = "icon"
                     )
                     Text(
-                        "Instant delivery"
+                        "Scheduled delivery",
+                        modifier = Modifier.padding(top = 10.dp)
                     )
                 }
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewButton(){
-    SelectDeliveryType(
-        onClickPrimary = {},
-        modifier = Modifier
-    )
 }

@@ -26,7 +26,22 @@ import com.example.oech_app.ui.theme.Primary
 import com.example.session_1.R
 
 @Composable
-fun AddDestination(state: Boolean, onClickAdd: ()-> Unit, inputText: String, onValue: (String) -> Unit){
+fun AddDestination(
+    state: Boolean,
+    onClickAdd: ()-> Unit,
+
+    addressD: String,
+    onAddressD: (String) -> Unit,
+
+    countryD: String,
+    onCountryD: (String) -> Unit,
+
+    phoneD: String,
+    onPhoneD: (String) -> Unit,
+
+    othersD: String,
+    onOthersD: (String) -> Unit,
+){
     if (!state){
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -80,8 +95,14 @@ fun AddDestination(state: Boolean, onClickAdd: ()-> Unit, inputText: String, onV
             DetailsRow(
                 icon = R.drawable.mark,
                 labelName = "Destination Details",
-                inputText = inputText,
-                onValue = onValue
+                address = addressD,
+                country = countryD,
+                phone = phoneD,
+                others = othersD,
+                onOthers = onOthersD,
+                onAddress = onAddressD,
+                onPhone = onPhoneD,
+                onCountry = onCountryD
             )
         }
     }

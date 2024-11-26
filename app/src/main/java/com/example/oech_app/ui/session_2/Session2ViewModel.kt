@@ -306,6 +306,11 @@ class Session2ViewModel: ViewModel() {
     private val _otpError = MutableStateFlow(false)
     val otpError = _otpError.asStateFlow()
 
+
+
+
+    //Session 3
+
     var checked = mutableStateOf(false)
     fun onCheckedChange(state: Boolean){
         checked.value = !checked.value
@@ -325,5 +330,121 @@ class Session2ViewModel: ViewModel() {
                 textColor = TextLighter
             )
         }
+    }
+
+    private var _addressO = MutableStateFlow("")
+    var addressO = _addressO.asStateFlow()
+
+    fun onAddressO(address: String){
+        _addressO.value = address
+    }
+
+
+    private var _countryO = MutableStateFlow("")
+    var countryO = _countryO.asStateFlow()
+
+    fun onCountryO(country: String){
+        _countryO.value = country
+    }
+
+
+    private var _phoneO = MutableStateFlow("")
+    var phoneO = _phoneO.asStateFlow()
+
+    fun onPhoneO(phone: String){
+        _phoneO.value = phone
+    }
+
+
+    private var _othersO = MutableStateFlow("")
+    var othersO = _othersO.asStateFlow()
+
+    fun onOthersO(others: String){
+        _othersO.value = others
+    }
+
+    private var _addressD1 = MutableStateFlow("")
+    var addressD1 = _addressD1.asStateFlow()
+
+    fun onAddressD1(address: String){
+        _addressD1.value = address
+    }
+
+
+    private var _countryD1 = MutableStateFlow("")
+    var countryD1 = _countryD1.asStateFlow()
+
+    fun onCountryD1(country: String){
+        _countryD1.value = country
+    }
+
+
+    private var _phoneD1 = MutableStateFlow("")
+    var phoneD1 = _phoneD1.asStateFlow()
+
+    fun onPhoneD1(phone: String){
+        _phoneD1.value = phone
+    }
+
+
+    private var _othersD1 = MutableStateFlow("")
+    var othersD1 = _othersD1.asStateFlow()
+
+    fun onOthersD1(others: String){
+        _othersD1.value = others
+    }
+
+    private var _addressD2 = MutableStateFlow("")
+    var addressD2 = _addressD2.asStateFlow()
+
+    fun onAddressD2(address: String){
+        _addressD2.value = address
+    }
+
+
+    private var _countryD2 = MutableStateFlow("")
+    var countryD2 = _countryD2.asStateFlow()
+
+    fun onCountryD2(country: String){
+        _countryD2.value = country
+    }
+
+
+    private var _phoneD2 = MutableStateFlow("")
+    var phoneD2 = _phoneD2.asStateFlow()
+
+    fun onPhoneD2(phone: String){
+        _phoneD2.value = phone
+    }
+
+
+    private var _othersD2 = MutableStateFlow("")
+    var othersD2 = _othersD2.asStateFlow()
+
+    fun onOthersD2(others: String){
+        _othersD2.value = others
+    }
+
+    private var _itemsP = MutableStateFlow("")
+    var itemsP = _itemsP.asStateFlow()
+
+    fun onItemsP(items: String){
+        _itemsP.value = items
+    }
+
+
+    private var _weightP = MutableStateFlow("")
+    var weightP = _weightP.asStateFlow()
+
+    fun onWeightP(weight: String){
+        _weightP.value = weight
+    }
+
+
+    private var _worthP = MutableStateFlow("")
+    var worthP = _worthP.asStateFlow()
+
+    fun onWorthP(worth: String){
+        _worthP.value = worth
     }
 }

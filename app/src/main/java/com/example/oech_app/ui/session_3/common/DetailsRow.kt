@@ -1,6 +1,5 @@
 package com.example.oech_app.ui.session_3.common
 
-import android.graphics.drawable.Icon
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,27 +10,27 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.TextLighter
-import com.example.session_1.R
 
 @Composable
 fun DetailsRow(
     @DrawableRes icon: Int,
     labelName: String,
-    inputText: String,
-    onValue: (String) -> Unit
+    address: String,
+    country: String,
+    phone: String,
+    others: String,
+    onCountry: (String) -> Unit,
+    onPhone: (String) -> Unit,
+    onOthers: (String) -> Unit,
+    onAddress: (String) -> Unit
 ){
     Column(
         verticalArrangement = Arrangement.Top,
@@ -61,38 +60,29 @@ fun DetailsRow(
             }
         }
         TextRow(
-            inputText = inputText,
-            onValue = onValue,
+            inputText = address,
+            onValue = onAddress,
+            placeholder = "Address",
             modifier = Modifier
         )
         TextRow(
-            inputText = inputText,
-            onValue = onValue,
+            inputText = country,
+            onValue = onCountry,
+            placeholder = "State,Country",
             modifier = Modifier.padding(top = 5.dp)
         )
         TextRow(
-            inputText = inputText,
-            onValue = onValue,
+            inputText = phone,
+            onValue = onPhone,
+            placeholder = "Phone Number",
             modifier = Modifier.padding(top = 5.dp)
         )
         TextRow(
-            inputText = inputText,
-            onValue = onValue,
+            inputText = others,
+            onValue = onOthers,
+            placeholder = "Others",
             modifier = Modifier.padding(top = 5.dp)
         )
     }
 }
 
-@Preview
-@Composable
-fun PreviewDetails(){
-
-    var inputText by remember { mutableStateOf("")}
-
-    DetailsRow(
-        inputText = inputText,
-        onValue = {inputText = it},
-        icon = R.drawable.sun,
-        labelName = "Origins Details"
-    )
-}
