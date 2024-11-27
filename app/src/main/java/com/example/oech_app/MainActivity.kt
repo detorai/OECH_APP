@@ -29,6 +29,8 @@ import com.example.oech_app.ui.session_3.tabs.HomeTab
 import com.example.oech_app.ui.session_3.tabs.MainContent
 import com.example.oech_app.ui.session_3.tabs.ProfileTab
 import com.example.oech_app.ui.session_3.tabs.TabNavigationItem
+import com.example.oech_app.ui.session_3.trans_succ.TransSucc
+import com.example.oech_app.ui.session_3.trans_succ.TransSuccScreen
 import com.example.oech_app.ui.theme.OECH_APPTheme
 
 class MainActivity : ComponentActivity() {
@@ -54,7 +56,7 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-                Navigator(SAPScreen(viewModel))
+                MainContent(viewModel)
         }
     }
 }

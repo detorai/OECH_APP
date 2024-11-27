@@ -6,13 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.example.oech_app.ui.session_2.Session2ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 
 class SAPScreen(private val viewModel: Session2ViewModel): Screen {
 
@@ -41,6 +39,8 @@ class SAPScreen(private val viewModel: Session2ViewModel): Screen {
         val items = viewModel.itemsP.collectAsState().value
         val weight = viewModel.weightP.collectAsState().value
         val worth = viewModel.worthP.collectAsState().value
+        val trackNum = viewModel.trackNum.collectAsState().value
+        val addDest = viewModel.addDest.collectAsState().value
 
         var state by remember { mutableStateOf(false) }
 
@@ -98,10 +98,19 @@ class SAPScreen(private val viewModel: Session2ViewModel): Screen {
 
                 onClickPrimary = {
                     state = true
+                    viewModel.trackNumRandom()
                 },
                 onClickSecondly = {
                     state = true
-                }
+                    viewModel.trackNumRandom()
+                },
+                trackNum = trackNum,
+                onClickAdd = {
+                    viewModel.addDestination()
+                },
+                state = addDest,
+                onEdit = {state = false},
+                onPayment = {}
         )
     }
 }

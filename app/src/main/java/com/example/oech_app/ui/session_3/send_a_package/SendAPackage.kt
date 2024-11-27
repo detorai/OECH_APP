@@ -69,9 +69,14 @@ fun SendAPackage(
     worth: String,
     onWorth: (String) -> Unit,
 
-    screenState: Boolean
+    screenState: Boolean,
+    trackNum: String,
+    state: Boolean,
+    onClickAdd: ()-> Unit,
+    onEdit: ()-> Unit,
+    onPayment: ()-> Unit
 ){
-    var state by remember { mutableStateOf(false) }
+
 
     Scaffold(
         topBar = { AppTopBar(
@@ -81,145 +86,189 @@ fun SendAPackage(
             )
         },
     ) {innerPadding ->
-        Empty(
-            modifier = Modifier.padding(innerPadding).verticalScroll(ScrollState(0)),
-            addressO = addressO,
-            addressD1 = addressD1,
-            addressD2 = addressD2,
-            countryO = countryO,
-            countryD1 = countryD1,
-            countryD2 = countryD2,
-            phoneD1 = phoneD1,
-            phoneO = phoneO,
-            phoneD2 = phoneD2,
-            othersO = othersO,
-            othersD1 = othersD1,
-            othersD2 = othersD2,
-            onClickPrimary = onClickPrimary,
-            onClickSecondly = onClickSecondly,
-            onClickAdd = {
-                state = true
-            },
-            onWeight = onWeight,
-            onItems = onItems,
-            onWorth = onWorth,
-            onPhoneO = onPhoneO,
-            onOthersO = onOthersO,
-            onAddressO = onAddressO,
-            onCountryO = onCountryO,
-            onPhoneD1 = onPhoneD1,
-            onPhoneD2 = onPhoneD2,
-            onOthersD1 = onOthersD1,
-            onOthersD2 = onOthersD2,
-            onAddressD1 = onAddressD1,
-            onAddressD2 = onAddressD2,
-            onCountryD1 = onCountryD1,
-            onCountryD2 = onCountryD2,
-            worth = worth,
-            weight = weight,
-            items = items,
-            state = screenState
-        )
-        /*Column (
-            modifier = Modifier.padding(innerPadding).verticalScroll(ScrollState(0)),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start
-        ){
-            Column(
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(top = 43.dp)
-            ) {
-                DetailsRow(
-                    icon = R.drawable.sun,
-                    labelName = "Origin Details",
-                    address = addressO,
-                    country = countryO,
-                    phone = phoneO,
-                    others = othersO,
-                    onOthers = onOthersO,
-                    onAddress = onAddressO,
-                    onPhone = onPhoneO,
-                    onCountry = onCountryO
-                )
-            }
-            Column(
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(top = 39.dp)
-            ) {
-                DetailsRow(
-                    icon = R.drawable.mark,
-                    labelName = "Destination Details",
-                    address = addressD1,
-                    country = countryD1,
-                    phone = phoneD1,
-                    others = othersD1,
-                    onOthers = onOthersD1,
-                    onAddress = onAddressD1,
-                    onPhone = onPhoneD1,
-                    onCountry = onCountryD1
-                )
-            }
-            AddDestination(
-                state = state,
-                addressD = addressD2,
-                countryD = countryD2,
-                phoneD = phoneD2,
-                othersD = othersD2,
-                onOthersD = onOthersD2,
-                onAddressD = onAddressD2,
-                onPhoneD = onPhoneD2,
-                onCountryD = onCountryD2,
-                onClickAdd = {
-                    state = true
-                },
-            )
-            Column(
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.Start,
-                modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(start = 24.dp, end = 24.dp, top = 24.dp)
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start,
-                    modifier = Modifier.padding(bottom = 5.dp).fillMaxWidth().wrapContentHeight()
-                ) {
-                    Column {
-                        Text(
-                            "Package Details",
-                            fontWeight = FontWeight.W500,
-                            fontSize = 14.sp,
-                            lineHeight = 16.sp,
-                            color = TextLighter
-                        )
-                    }
-                }
-                TextRow(
-                    inputText = items,
-                    onValue = onItems,
-                    modifier = Modifier,
-                    placeholder = "package items"
-                )
-                TextRow(
-                    inputText = weight,
-                    onValue = onWeight,
-                    modifier = Modifier.padding(top = 5.dp),
-                    placeholder = "Weight of item(kg)"
-                )
-                TextRow(
-                    inputText = worth,
-                    onValue = onWorth,
-                    modifier = Modifier.padding(top = 5.dp),
-                    placeholder = "Worth of Items"
-                )
-            }
-            SelectDeliveryType(
+        if (!screenState) {
+            Empty(
+                modifier = Modifier.padding(innerPadding).verticalScroll(ScrollState(0)),
+                addressO = addressO,
+                addressD1 = addressD1,
+                addressD2 = addressD2,
+                countryO = countryO,
+                countryD1 = countryD1,
+                countryD2 = countryD2,
+                phoneD1 = phoneD1,
+                phoneO = phoneO,
+                phoneD2 = phoneD2,
+                othersO = othersO,
+                othersD1 = othersD1,
+                othersD2 = othersD2,
                 onClickPrimary = onClickPrimary,
                 onClickSecondly = onClickSecondly,
-                modifier = Modifier.padding(top = 39.dp, bottom = 15.dp)
+                onClickAdd = onClickAdd,
+                onWeight = onWeight,
+                onItems = onItems,
+                onWorth = onWorth,
+                onPhoneO = onPhoneO,
+                onOthersO = onOthersO,
+                onAddressO = onAddressO,
+                onCountryO = onCountryO,
+                onPhoneD1 = onPhoneD1,
+                onPhoneD2 = onPhoneD2,
+                onOthersD1 = onOthersD1,
+                onOthersD2 = onOthersD2,
+                onAddressD1 = onAddressD1,
+                onAddressD2 = onAddressD2,
+                onCountryD1 = onCountryD1,
+                onCountryD2 = onCountryD2,
+                worth = worth,
+                weight = weight,
+                items = items,
+                state = state
             )
-        }*/
+        } else {
+            Receipt(
+                addressO = addressO,
+                addressD1 = addressD1,
+                addressD2 = addressD2,
+                countryO = countryO,
+                countryD1 = countryD1,
+                countryD2 = countryD2,
+                phoneD1 = phoneD1,
+                phoneO = phoneO,
+                phoneD2 = phoneD2,
+                worthP = worth,
+                weightP = weight,
+                pItems = items,
+                state = state,
+                trackNum = trackNum,
+                onEdit = onEdit,
+                onPayment = onPayment
+            )
+        }
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Column (
+        modifier = Modifier.padding(innerPadding).verticalScroll(ScrollState(0)),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start
+    ){
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(top = 43.dp)
+        ) {
+            DetailsRow(
+                icon = R.drawable.sun,
+                labelName = "Origin Details",
+                address = addressO,
+                country = countryO,
+                phone = phoneO,
+                others = othersO,
+                onOthers = onOthersO,
+                onAddress = onAddressO,
+                onPhone = onPhoneO,
+                onCountry = onCountryO
+            )
+        }
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(top = 39.dp)
+        ) {
+            DetailsRow(
+                icon = R.drawable.mark,
+                labelName = "Destination Details",
+                address = addressD1,
+                country = countryD1,
+                phone = phoneD1,
+                others = othersD1,
+                onOthers = onOthersD1,
+                onAddress = onAddressD1,
+                onPhone = onPhoneD1,
+                onCountry = onCountryD1
+            )
+        }
+        AddDestination(
+            state = state,
+            addressD = addressD2,
+            countryD = countryD2,
+            phoneD = phoneD2,
+            othersD = othersD2,
+            onOthersD = onOthersD2,
+            onAddressD = onAddressD2,
+            onPhoneD = onPhoneD2,
+            onCountryD = onCountryD2,
+            onClickAdd = {
+                state = true
+            },
+        )
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.Start,
+            modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(start = 24.dp, end = 24.dp, top = 24.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.padding(bottom = 5.dp).fillMaxWidth().wrapContentHeight()
+            ) {
+                Column {
+                    Text(
+                        "Package Details",
+                        fontWeight = FontWeight.W500,
+                        fontSize = 14.sp,
+                        lineHeight = 16.sp,
+                        color = TextLighter
+                    )
+                }
+            }
+            TextRow(
+                inputText = items,
+                onValue = onItems,
+                modifier = Modifier,
+                placeholder = "package items"
+            )
+            TextRow(
+                inputText = weight,
+                onValue = onWeight,
+                modifier = Modifier.padding(top = 5.dp),
+                placeholder = "Weight of item(kg)"
+            )
+            TextRow(
+                inputText = worth,
+                onValue = onWorth,
+                modifier = Modifier.padding(top = 5.dp),
+                placeholder = "Worth of Items"
+            )
+        }
+        SelectDeliveryType(
+            onClickPrimary = onClickPrimary,
+            onClickSecondly = onClickSecondly,
+            modifier = Modifier.padding(top = 39.dp, bottom = 15.dp)
+        )
+    }*/

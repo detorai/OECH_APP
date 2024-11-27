@@ -11,6 +11,9 @@ import com.example.oech_app.ui.theme.TextLighter
 import com.example.oech_app.ui.theme.primaryDark
 import com.example.oech_app.ui.theme.secondaryDark
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.codec.binary.Base64
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -446,5 +449,39 @@ class Session2ViewModel: ViewModel() {
 
     fun onWorthP(worth: String){
         _worthP.value = worth
+    }
+
+    private val _trackNum = MutableStateFlow("")
+    val trackNum = _trackNum.asStateFlow()
+
+    private val _loaded = MutableStateFlow(false)
+    val loaded = _loaded.asStateFlow()
+
+    @OptIn(DelicateCoroutinesApi::class)
+    fun transSuccessful(){
+        GlobalScope.launch {
+            delay(5000)
+            _loaded.value = true
+        }
+    }
+
+    fun trackNumRandom(): String{
+        val random = Random(System.currentTimeMillis())
+
+        val part1 = (1000..9999).random(random).toString()
+        val part2 = (1000..9999).random(random).toString()
+        val part3 = (1000..9999).random(random).toString()
+        val part4 = (1000..9999).random(random).toString()
+
+        val trackNum = "R-$part1-$part2-$part3-$part4"
+        _trackNum.value = trackNum
+        return _trackNum.value
+    }
+
+    private val _addDest = MutableStateFlow(false)
+    val addDest = _addDest.asStateFlow()
+
+    fun addDestination(){
+        _addDest.value = !_addDest.value
     }
 }
