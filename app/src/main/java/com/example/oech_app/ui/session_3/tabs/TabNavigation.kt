@@ -22,7 +22,10 @@ fun RowScope.TabNavigationItem(tab: Tab, mainColor: Color) {
 
     BottomNavigationItem(
         selected = tabNavigator.current == tab,
-        onClick = { tabNavigator.current = tab },
+        onClick = {
+            tabNavigator.current = tab
+
+                  },
         label = {
             Text(text = tab.options.title)
         },

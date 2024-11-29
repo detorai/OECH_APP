@@ -1,26 +1,17 @@
 package com.example.oech_app.ui.session_3.profile
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.example.oech_app.common.AppTopBar
+import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_3.profile.common.ProfileContent
-import com.example.oech_app.ui.theme.Gray
+import com.example.oech_app.ui.session_3.tabs.ProfileTab
 
 
 @Composable
@@ -34,8 +25,10 @@ fun Profile(
     secondaryColor: Color,
     textColor: Color,
     onClickBalance: () -> Unit,
-    onBankClick: () -> Unit
+    onBankClick: () -> Unit,
+    viewModel: Session2ViewModel
 ) {
+    TabNavigator(ProfileTab(viewModel)){
     Scaffold(
         topBar = {
             AppTopBar(
@@ -43,22 +36,24 @@ fun Profile(
                 onClickBack = {},
                 secondaryColor = secondaryColor
             )
-        }
+        },
     ) {innerPadding ->
         Box(
             modifier = Modifier.padding(innerPadding)
-        )
-        ProfileContent(
-            name = name,
-            balance = balance,
-            image = image,
-            checked = checked,
-            onCheckChange = onCheckChange,
-            mainColor = mainColor,
-            secondaryColor = secondaryColor,
-            textColor = textColor,
-            onClickBalance = onClickBalance,
-            onBankClick = onBankClick
-        )
+        ) {
+            ProfileContent(
+                name = name,
+                balance = balance,
+                image = image,
+                checked = checked,
+                onCheckChange = onCheckChange,
+                mainColor = mainColor,
+                secondaryColor = secondaryColor,
+                textColor = textColor,
+                onClickBalance = onClickBalance,
+                onBankClick = onBankClick
+                )
+            }
+        }
     }
 }

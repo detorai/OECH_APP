@@ -1,18 +1,12 @@
 package com.example.oech_app
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-//noinspection UsingMaterialAndMaterial3Libraries
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.tab.CurrentTab
-import cafe.adriel.voyager.navigator.tab.TabNavigator
+import androidx.compose.runtime.collectAsState
 import com.example.oech_app.ui.session_1.onboarding.ob1.Onboarding1Screen
 import com.example.oech_app.ui.session_1.onboarding.ob2.OnBoarding2Screen
 import com.example.oech_app.ui.session_1.onboarding.ob3.Onboarding3Screen
@@ -24,18 +18,12 @@ import com.example.oech_app.ui.session_2.otpverification.OTPScreen
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
-import com.example.oech_app.ui.session_3.send_a_package.SAPScreen
-import com.example.oech_app.ui.session_3.tabs.HomeTab
-import com.example.oech_app.ui.session_3.tabs.MainContent
-import com.example.oech_app.ui.session_3.tabs.ProfileTab
-import com.example.oech_app.ui.session_3.tabs.TabNavigationItem
-import com.example.oech_app.ui.session_3.trans_succ.TransSucc
-import com.example.oech_app.ui.session_3.trans_succ.TransSuccScreen
-import com.example.oech_app.ui.theme.OECH_APPTheme
+import com.example.oech_app.ui.session_3.tabs.MainEvent
 
 class MainActivity : ComponentActivity() {
 
     private val viewModel: Session2ViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +35,7 @@ class MainActivity : ComponentActivity() {
             SplashScreen()
         )
         val session2 = listOf(
-            HomeScreen(),
+            HomeScreen(viewModel),
             NewPasswordScreen(viewModel),
             OTPScreen(viewModel),
             ForgotPasswordScreen(viewModel),
@@ -56,7 +44,12 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-                MainContent(viewModel)
+
+            val checked = viewModel.checked.collectAsState().value
+            val colors = viewModel.getColors(checked)
+            val tabState = viewModel.tabState.collectAsState().value
+
+            MainEvent(colors.mainColor,viewModel)
         }
     }
 }

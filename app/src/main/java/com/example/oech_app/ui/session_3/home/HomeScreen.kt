@@ -5,8 +5,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
+import com.example.oech_app.ui.session_2.Session2ViewModel
 
-class HomeScreen: Screen {
+class HomeScreen(private val viewModel: Session2ViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
@@ -14,6 +15,10 @@ class HomeScreen: Screen {
     override fun Content() {
         val navigator = LocalNavigator.current
 
-        Home()
+        val colors = viewModel.getColors(viewModel.checked.value)
+
+        Home(
+            colors.mainColor
+        )
     }
 }

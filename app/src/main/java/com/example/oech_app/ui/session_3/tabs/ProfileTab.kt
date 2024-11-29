@@ -8,12 +8,11 @@ import androidx.compose.ui.res.vectorResource
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
 import com.example.session_1.R
 
-object ProfileTab: Tab {
-    private fun readResolve(): Any = ProfileTab
-
+class ProfileTab(private val viewModel: Session2ViewModel): Tab {
 
     override val options: TabOptions
         @Composable
@@ -25,13 +24,13 @@ object ProfileTab: Tab {
                 TabOptions(
                     icon = icon,
                     title = title,
-                    index = 0u
+                    index = 4u
                 )
             }
         }
 
     @Composable
     override fun Content() {
-        Navigator(ProfileScreen())
+        Navigator(ProfileScreen(viewModel))
     }
 }

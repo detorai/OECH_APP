@@ -43,7 +43,7 @@ class SignInScreen(private val viewModel: Session2ViewModel): Screen {
                 val user = viewModel.signIn(emailText, passwordText)
                 Log.d("SignInScreen", "Результат входа: ${user != null}")
                 if (user != null) {
-                    navigator?.push(HomeScreen())
+                    navigator?.push(HomeScreen(viewModel))
                     field1 = false
                     field2 = false
                 } else {

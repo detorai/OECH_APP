@@ -1,27 +1,33 @@
 package com.example.oech_app.ui.session_3.tabs
 
+
 import android.annotation.SuppressLint
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigation
-import androidx.compose.material3.Scaffold
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.example.oech_app.ui.session_2.Session2ViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "SuspiciousIndentation")
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainContent(viewModel: Session2ViewModel) {
-    val colors = viewModel.getColors(viewModel.checked.value)
-    TabNavigator(HomeTab) {
+fun MainEvent(
+    mainColor: Color,
+    viewModel: Session2ViewModel,
+) {
+    TabNavigator(HomeTab(viewModel)){
         Scaffold(
             content = {
                 CurrentTab()
             },
             bottomBar = {
                 BottomNavigation {
-                    TabNavigationItem(HomeTab, colors.mainColor)
-                    TabNavigationItem(ProfileTab, colors.mainColor)
+                    TabNavigationItem(HomeTab(viewModel), mainColor)
+                    TabNavigationItem(ProfileTab(viewModel), mainColor)
                 }
             }
         )

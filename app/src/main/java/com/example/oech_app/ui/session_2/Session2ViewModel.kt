@@ -314,9 +314,10 @@ class Session2ViewModel: ViewModel() {
 
     //Session 3
 
-    var checked = mutableStateOf(false)
+    private var _checked = MutableStateFlow(false)
+    var checked = _checked.asStateFlow()
     fun onCheckedChange(state: Boolean){
-        checked.value = !checked.value
+        _checked.value = !_checked.value
     }
 
     fun getColors(checked: Boolean): ColorsScheme{
@@ -484,4 +485,6 @@ class Session2ViewModel: ViewModel() {
     fun addDestination(){
         _addDest.value = !_addDest.value
     }
+    private var _tabState = MutableStateFlow(true)
+    var tabState = _tabState.asStateFlow()
 }

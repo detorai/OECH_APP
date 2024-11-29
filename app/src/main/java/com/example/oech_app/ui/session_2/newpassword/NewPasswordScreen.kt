@@ -45,7 +45,7 @@ class NewPasswordScreen(private val viewModel: Session2ViewModel): Screen {
                         viewModel.changePass(emailForChangePass, passwordText)
                         field1 = false
                         field2 = false
-                        navigator?.push(HomeScreen())
+                        navigator?.push(HomeScreen(viewModel))
                     }
                 }
             },
