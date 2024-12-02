@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -24,8 +22,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.oech_app.ui.session_3.common.CircularProgressBar
-import com.example.oech_app.ui.theme.Gray
+import com.example.oech_app.common.common_s3.CircularProgressBar
 import com.example.oech_app.ui.theme.Primary
 import com.example.oech_app.ui.theme.TextLighter
 

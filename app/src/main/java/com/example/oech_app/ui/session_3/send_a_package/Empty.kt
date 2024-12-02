@@ -1,9 +1,7 @@
 package com.example.oech_app.ui.session_3.send_a_package
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,14 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.oech_app.ui.session_3.common.AddDestination
-import com.example.oech_app.ui.session_3.common.DetailsRow
-import com.example.oech_app.ui.session_3.common.SelectDeliveryType
-import com.example.oech_app.ui.session_3.common.TextRow
+import com.example.oech_app.common.common_s3.AddDestination
+import com.example.oech_app.common.common_s3.DetailsRow
+import com.example.oech_app.common.common_s3.SelectDeliveryType
+import com.example.oech_app.common.common_s3.TextRow
 import com.example.oech_app.ui.theme.TextLighter
 import com.example.session_1.R
 

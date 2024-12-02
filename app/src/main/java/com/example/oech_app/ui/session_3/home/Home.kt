@@ -12,13 +12,31 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.example.oech_app.common.BottomTabBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Home(
-    mainColor: Color
+    textColor: Color,
+    mainColor: Color,
+    onHome: ()-> Unit,
+    onProfile: ()-> Unit,
+    onWallet: ()-> Unit,
+    selectedTabIndex: Int
 ){
-    Scaffold{ innerPadding ->
+    Scaffold(
+        bottomBar = {
+            BottomTabBar(
+                textColor = textColor,
+                mainColor = mainColor,
+                onProfile = onProfile,
+                onHome = onHome,
+                onTrack = {},
+                onWallet = onWallet,
+                selectedTabIndex = selectedTabIndex
+            )
+        }
+    ){ innerPadding ->
         Box(
             modifier = Modifier.fillMaxWidth().fillMaxHeight().background(mainColor).padding(innerPadding)
         ) {

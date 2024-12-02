@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
@@ -21,23 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.common.ClickableString
 import com.example.oech_app.common.buttons.PrimaryButton
-import com.example.oech_app.ui.session_2.common.CheckBoxRow
-import com.example.oech_app.ui.session_2.common.ForgotPassClick
-import com.example.oech_app.ui.session_2.common.ScreenLabel
-import com.example.oech_app.ui.session_2.common.TextFieldRow
+import com.example.oech_app.common.common_s2.ForgotPassClick
+import com.example.oech_app.common.common_s2.ScreenLabel
+import com.example.oech_app.common.common_s2.TextFieldRow
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.GrayLighter
-import com.example.oech_app.ui.theme.Primary
 import com.example.session_1.R
 
 @Composable

@@ -5,8 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import cafe.adriel.voyager.navigator.Navigator
 import com.example.oech_app.ui.session_1.onboarding.ob1.Onboarding1Screen
 import com.example.oech_app.ui.session_1.onboarding.ob2.OnBoarding2Screen
 import com.example.oech_app.ui.session_1.onboarding.ob3.Onboarding3Screen
@@ -18,7 +17,8 @@ import com.example.oech_app.ui.session_2.otpverification.OTPScreen
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
-import com.example.oech_app.ui.session_3.tabs.MainEvent
+import com.example.oech_app.ui.session_3.profile.ProfileScreen
+import com.example.oech_app.ui.session_3.send_a_package.SAPScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -42,14 +42,14 @@ class MainActivity : ComponentActivity() {
             SignInScreen(viewModel),
             SignUpScreen(viewModel)
         )
+        val session3 = listOf(
+            SAPScreen(viewModel),
+            ProfileScreen(viewModel),
+            HomeScreen(viewModel),
+        )
 
         setContent {
-
-            val checked = viewModel.checked.collectAsState().value
-            val colors = viewModel.getColors(checked)
-            val tabState = viewModel.tabState.collectAsState().value
-
-            MainEvent(colors.mainColor,viewModel)
+            Navigator(session3)
         }
     }
 }

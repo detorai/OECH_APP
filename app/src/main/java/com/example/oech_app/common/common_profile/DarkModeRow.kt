@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_3.profile.common
+package com.example.oech_app.common.common_profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchColors
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.GraySwitch
 import com.example.oech_app.ui.theme.Primary
-import com.example.oech_app.ui.theme.TextLighter
 
 @Composable
 fun DarkModeRow(

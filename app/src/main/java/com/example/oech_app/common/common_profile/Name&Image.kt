@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_3.profile.common
+package com.example.oech_app.common.common_profile
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

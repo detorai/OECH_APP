@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.common.ClickableString
 import com.example.oech_app.common.buttons.PrimaryButton
-import com.example.oech_app.ui.session_2.common.CheckBoxRow
-import com.example.oech_app.ui.session_2.common.ScreenLabel
-import com.example.oech_app.ui.session_2.common.TextFieldRow
+import com.example.oech_app.common.common_s2.CheckBoxRow
+import com.example.oech_app.common.common_s2.ScreenLabel
+import com.example.oech_app.common.common_s2.TextFieldRow
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.GrayLighter
 import com.example.oech_app.ui.theme.Primary

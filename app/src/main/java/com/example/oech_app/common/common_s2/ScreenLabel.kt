@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_2.common
+package com.example.oech_app.common.common_s2
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.Gray
-import com.example.oech_app.ui.theme.TextDarker
 import com.example.oech_app.ui.theme.TextLighter
 
 @Composable

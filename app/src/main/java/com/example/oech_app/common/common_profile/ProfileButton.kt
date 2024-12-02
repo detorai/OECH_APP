@@ -1,5 +1,6 @@
-package com.example.oech_app.ui.session_3.profile.common
+package com.example.oech_app.common.common_profile
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,16 +22,18 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.oech_app.ui.theme.TextLighter
-import com.example.session_1.R
+import com.example.oech_app.ui.theme.Gray
 
 @Composable
-fun LogOutButton(
+fun ProfileButton(
+    @DrawableRes icon: Int,
+    label: String,
+    description: String,
     modifier: Modifier,
     mainColor: Color,
     secondaryColor: Color,
     textColor: Color
-    ){
+){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -45,18 +48,11 @@ fun LogOutButton(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Row {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(R.drawable.a1),
-                        contentDescription = "icon",
-                        tint = Color.Red
-                    )
-                    Icon(
-                        imageVector = ImageVector.vectorResource(R.drawable.a2),
-                        contentDescription = "icon",
-                        tint = Color.Red
-                    )
-                }
+                Icon(
+                    imageVector = ImageVector.vectorResource(icon),
+                    contentDescription = "icon",
+                    tint = textColor
+                )
             }
             Column(
                 horizontalAlignment = Alignment.Start,
@@ -64,11 +60,18 @@ fun LogOutButton(
                 modifier = Modifier.padding(9.dp, 0.dp, 0.dp, 0.dp)
             ) {
                 Text(
-                    text = "Log Out",
+                    text = label,
                     color = textColor,
                     fontSize = 16.sp,
                     lineHeight = 16.sp,
                     fontWeight = FontWeight(500)
+                )
+                Text(
+                    text = description,
+                    color = Gray,
+                    fontSize = 12.sp,
+                    lineHeight = 16.sp,
+                    fontWeight = FontWeight(400)
                 )
             }
         }

@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.oech_app.common.buttons.PrimaryButton
-import com.example.oech_app.ui.session_2.common.ClickableTimerText
-import com.example.oech_app.ui.session_2.common.FullBoxTextField
-import com.example.oech_app.ui.session_2.common.ScreenLabel
+import com.example.oech_app.common.common_s2.ClickableTimerText
+import com.example.oech_app.common.common_s2.FullBoxTextField
+import com.example.oech_app.common.common_s2.ScreenLabel
 
 @Composable
 fun OTPVerification(

@@ -7,11 +7,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.example.oech_app.common.AppTopBar
-import com.example.oech_app.ui.session_2.Session2ViewModel
-import com.example.oech_app.ui.session_3.profile.common.ProfileContent
-import com.example.oech_app.ui.session_3.tabs.ProfileTab
+import com.example.oech_app.common.BottomTabBar
+import com.example.oech_app.common.common_profile.ProfileContent
 
 
 @Composable
@@ -26,17 +24,31 @@ fun Profile(
     textColor: Color,
     onClickBalance: () -> Unit,
     onBankClick: () -> Unit,
-    viewModel: Session2ViewModel
+    onHome: ()-> Unit,
+    onProfile: ()-> Unit,
+    selectedTabIndex: Int,
+    onWallet: ()-> Unit,
+    onClickBack: () -> Unit
 ) {
-    TabNavigator(ProfileTab(viewModel)){
     Scaffold(
         topBar = {
             AppTopBar(
                 label = "Profile",
-                onClickBack = {},
+                onClickBack = onClickBack,
                 secondaryColor = secondaryColor
             )
         },
+        bottomBar = {
+            BottomTabBar(
+                mainColor = mainColor,
+                textColor = textColor,
+                onProfile = onProfile,
+                onHome = onHome,
+                onTrack = {},
+                onWallet = onWallet,
+                selectedTabIndex = selectedTabIndex
+            )
+        }
     ) {innerPadding ->
         Box(
             modifier = Modifier.padding(innerPadding)
@@ -52,8 +64,7 @@ fun Profile(
                 textColor = textColor,
                 onClickBalance = onClickBalance,
                 onBankClick = onBankClick
-                )
-            }
+            )
         }
     }
 }

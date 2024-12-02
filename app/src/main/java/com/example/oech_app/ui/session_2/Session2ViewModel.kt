@@ -487,4 +487,11 @@ class Session2ViewModel: ViewModel() {
     }
     private var _tabState = MutableStateFlow(true)
     var tabState = _tabState.asStateFlow()
+
+    private var _selectedTabIndex = MutableStateFlow(0)
+    var selectedTabIndex = _selectedTabIndex.asStateFlow()
+
+    fun changeSelect(index: Int){
+        _selectedTabIndex.value = index
+    }
 }

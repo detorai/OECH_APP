@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_3.home
+package com.example.oech_app.ui.session_4
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -9,39 +9,40 @@ import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.ui.session_3.home.HomeScreen
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
-import com.example.oech_app.ui.session_4.WalletScreen
 
-class HomeScreen(private val viewModel: Session2ViewModel): Screen {
+class WalletScreen(private val viewModel: Session2ViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
-
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
         val selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value
 
         LaunchedEffect(Unit) {
-            viewModel.changeSelect(1)
+            viewModel.changeSelect(2)
         }
 
-        Home(
+        Wallet(
             mainColor = colors.mainColor,
+            secondaryColor = colors.secondaryColor,
             textColor = colors.textColor,
+            onClickBack = {navigator.pop()},
             onHome = {
                 viewModel.changeSelect(1)
                 navigator.push(HomeScreen(viewModel))
-                     },
-            onProfile = {
-                viewModel.changeSelect(4)
-                navigator.push(ProfileScreen(viewModel))
             },
             onWallet = {
                 viewModel.changeSelect(2)
                 navigator.push(WalletScreen(viewModel))
+            },
+            onProfile = {
+                viewModel.changeSelect(4)
+                navigator.push(ProfileScreen(viewModel))
             },
             selectedTabIndex = selectedTabIndex
         )

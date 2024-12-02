@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_2.common
+package com.example.oech_app.common.common_s2
 
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable

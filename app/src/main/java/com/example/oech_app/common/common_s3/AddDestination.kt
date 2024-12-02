@@ -1,6 +1,5 @@
-package com.example.oech_app.ui.session_3.common
+package com.example.oech_app.common.common_s3
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

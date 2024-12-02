@@ -1,7 +1,7 @@
 package com.example.oech_app.ui.session_3.profile
 
-import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,6 +14,8 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_3.add_payment_method.AddPayMethScreen
+import com.example.oech_app.ui.session_3.home.HomeScreen
+import com.example.oech_app.ui.session_4.WalletScreen
 import com.example.session_1.R
 
 class ProfileScreen(private val viewModel: Session2ViewModel): Screen {
@@ -22,14 +24,14 @@ class ProfileScreen(private val viewModel: Session2ViewModel): Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow.parent
+        val navigator = LocalNavigator.currentOrThrow
 
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
         val balance by remember { mutableStateOf("1328415")}
         var onClickBalance by remember { mutableStateOf(false)}
         val hideBalance = "*****"
-        var tabState = viewModel.tabState.collectAsState().value
+        var selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value
 
         fun hidingBalance(state: Boolean, balance: String, hideBalance: String): String{
 
@@ -43,6 +45,9 @@ class ProfileScreen(private val viewModel: Session2ViewModel): Screen {
             return myBalance
         }
 
+        LaunchedEffect(Unit) {
+            viewModel.changeSelect(4)
+        }
 
         Profile(
             name = "Ken",
@@ -56,12 +61,21 @@ class ProfileScreen(private val viewModel: Session2ViewModel): Screen {
             onClickBalance = {
                 onClickBalance = !onClickBalance
             },
-            onBankClick = {
-                tabState = false
-                navigator?.push(AddPayMethScreen(viewModel))
-                Log.d("Tab State", "tabState:${tabState}")
-                          },
-            viewModel = viewModel
+            onBankClick = { navigator.push(AddPayMethScreen(viewModel)) },
+            onHome = {
+                selectedTabIndex = 1
+                navigator.push(HomeScreen(viewModel))
+                     },
+            onWallet = {
+                viewModel.changeSelect(2)
+                navigator.push(WalletScreen(viewModel))
+            },
+            onProfile = {
+                selectedTabIndex = 4
+                navigator.push(ProfileScreen(viewModel))
+            },
+            selectedTabIndex = selectedTabIndex,
+            onClickBack = {navigator.pop()}
         )
     }
 }

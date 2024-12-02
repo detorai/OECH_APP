@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_3.common
+package com.example.oech_app.common.common_s3
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
