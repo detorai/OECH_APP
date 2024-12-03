@@ -494,4 +494,38 @@ class Session2ViewModel: ViewModel() {
     fun changeSelect(index: Int){
         _selectedTabIndex.value = index
     }
+
+    private val _balance = MutableStateFlow("")
+    val balance = _balance.asStateFlow()
+
+    fun makeBalance(): String{
+        val random = Random(System.currentTimeMillis())
+
+        val startBalance = (500..100000).random(random).toString()
+
+        val balance = "N${startBalance}"
+        _balance.value = balance
+        return _balance.value
+    }
+
+    private val hideBalance = "*******"
+
+    fun hidingBalance(state: Boolean, balance: String): String{
+
+        var myBalance = ""
+
+        myBalance = if (!state){
+            balance
+        } else {
+            hideBalance
+        }
+        return myBalance
+    }
+
+    private val _balanceState = MutableStateFlow(false)
+    val balanceState = _balanceState.asStateFlow()
+
+    fun onClickBalance(){
+        _balanceState.value = !balanceState.value
+    }
 }

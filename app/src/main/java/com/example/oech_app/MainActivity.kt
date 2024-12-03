@@ -16,6 +16,7 @@ import com.example.oech_app.ui.session_2.newpassword.NewPasswordScreen
 import com.example.oech_app.ui.session_2.otpverification.OTPScreen
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
+import com.example.oech_app.ui.session_3.add_payment_method.AddPayMethScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
 import com.example.oech_app.ui.session_3.send_a_package.SAPScreen
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            Navigator(session3)
+            Navigator(AddPayMethScreen(viewModel))
         }
     }
 }

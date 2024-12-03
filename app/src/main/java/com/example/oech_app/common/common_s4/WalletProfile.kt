@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Icon
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,9 +31,12 @@ fun WalletProfile(
     balance: String,
     @DrawableRes image: Int,
     onClickBalance: () -> Unit,
+    onBank: ()-> Unit,
+    onTransfer: ()-> Unit,
+    onCard: ()-> Unit
 ){
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth().fillMaxHeight().background(mainColor).padding(25.dp, 25.dp, 25.dp, 0.dp)
     ) {
@@ -48,7 +53,7 @@ fun WalletProfile(
                 textColor = textColor,
                 secondaryColor = secondaryColor
             )
-            IconButton(onClickBalance) {
+            IconButton(onClick = onClickBalance) {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.eye_slash),
                     contentDescription = "eye_slash",
@@ -56,5 +61,18 @@ fun WalletProfile(
                 )
             }
         }
+        TopUp(
+            onCard = onCard,
+            onBank = onBank,
+            onTransfer = onTransfer,
+            secondaryColor = secondaryColor,
+            textColor = textColor,
+            modifier = Modifier.padding(top = 28.dp)
+        )
+        TransHistory(
+            textColor = textColor,
+            modifier = Modifier.padding(top = 41.dp),
+            secondaryColor = secondaryColor
+        )
     }
 }

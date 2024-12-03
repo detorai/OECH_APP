@@ -11,6 +11,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_3.home.HomeScreen
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
+import com.example.session_1.R
 
 class WalletScreen(private val viewModel: Session2ViewModel): Screen {
 
@@ -22,6 +23,10 @@ class WalletScreen(private val viewModel: Session2ViewModel): Screen {
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
         val selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value
+        val balance = viewModel.balance.collectAsState().value
+        val name = "Kez"
+        val balanceState = viewModel.balanceState.collectAsState().value
+
 
         LaunchedEffect(Unit) {
             viewModel.changeSelect(2)
@@ -44,7 +49,14 @@ class WalletScreen(private val viewModel: Session2ViewModel): Screen {
                 viewModel.changeSelect(4)
                 navigator.push(ProfileScreen(viewModel))
             },
-            selectedTabIndex = selectedTabIndex
+            selectedTabIndex = selectedTabIndex,
+            name = name,
+            balance = viewModel.hidingBalance(balanceState, balance),
+            image = R.drawable.profile_image,
+            onCard = {},
+            onBank = {},
+            onTransfer = {},
+            onClickBalance =  viewModel::onClickBalance
         )
     }
 }

@@ -3,10 +3,6 @@ package com.example.oech_app.ui.session_3.profile
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
@@ -28,39 +24,28 @@ class ProfileScreen(private val viewModel: Session2ViewModel): Screen {
 
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
-        val balance by remember { mutableStateOf("1328415")}
-        var onClickBalance by remember { mutableStateOf(false)}
-        val hideBalance = "*****"
+        val balance = viewModel.balance.collectAsState().value
+        val balanceState = viewModel.balanceState.collectAsState().value
+
         var selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value
 
-        fun hidingBalance(state: Boolean, balance: String, hideBalance: String): String{
 
-            var myBalance = ""
-
-            myBalance = if (!state){
-                balance
-            } else {
-                hideBalance
-            }
-            return myBalance
-        }
 
         LaunchedEffect(Unit) {
+            viewModel.makeBalance()
             viewModel.changeSelect(4)
         }
 
         Profile(
             name = "Ken",
-            balance = hidingBalance(onClickBalance, balance, hideBalance),
+            balance = viewModel.hidingBalance(balanceState, balance),
             image = R.drawable.profile_image,
             onCheckChange = viewModel:: onCheckedChange,
             checked = checked,
             mainColor = colors.mainColor,
             secondaryColor = colors.secondaryColor,
             textColor = colors.textColor,
-            onClickBalance = {
-                onClickBalance = !onClickBalance
-            },
+            onClickBalance = viewModel:: onClickBalance,
             onBankClick = { navigator.push(AddPayMethScreen(viewModel)) },
             onHome = {
                 selectedTabIndex = 1
