@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_4
+package com.example.oech_app.ui.session_4.wallet
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Box

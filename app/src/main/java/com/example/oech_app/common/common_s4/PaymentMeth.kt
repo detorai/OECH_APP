@@ -1,5 +1,6 @@
 package com.example.oech_app.common.common_s4
 
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,8 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Text
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonColors
@@ -31,49 +32,85 @@ fun PaymentMeth(
     textColor: Color,
     secondaryColor: Color,
     makeChoose: () -> Unit,
-    choose: Boolean
-){
+    choose: Boolean,
+    height: Int,
+    onDelete1: () -> Unit,
+    onDelete2: () -> Unit,
+    othChoose: Boolean,
+    state1: Boolean,
+    makeChooseCard1: ()-> Unit,
+    state2: Boolean,
+    makeChooseCard2: ()-> Unit
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
         modifier = modifier
             .fillMaxWidth()
-            .height(84.dp)
+            .height(height.dp)
             .background(secondaryColor)
             .shadow(1.dp)
     ) {
-        Column {
-            RadioButton(
-                selected = choose,
-                onClick = makeChoose,
-                colors = RadioButtonColors(
-                    selectedColor = Primary,
-                    unselectedColor = Primary,
-                    disabledSelectedColor = Color.White,
-                    disabledUnselectedColor = Color.White
-                )
-            )
-        }
         Column(
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
-            modifier = Modifier
-                .wrapContentWidth()
-                .fillMaxHeight()
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(vertical = 24.dp, horizontal = 8.dp)
         ) {
-            Text(
-                label,
-                fontWeight = FontWeight.W400,
-                fontSize = 16.sp,
-                lineHeight = 20.sp,
-                color = textColor
+            Row(
+            ) {
+                Column {
+                    RadioButton(
+                        selected = choose,
+                        onClick = makeChoose,
+                        colors = RadioButtonColors(
+                            selectedColor = Primary,
+                            unselectedColor = Primary,
+                            disabledSelectedColor = Color.White,
+                            disabledUnselectedColor = Color.White
+                        )
+                    )
+                }
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.Start,
+                modifier = Modifier
+                    .wrapContentWidth()
+            ) {
+                Text(
+                    label,
+                    fontWeight = FontWeight.W400,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp,
+                    color = textColor
+                )
+                Text(
+                    desc,
+                    fontWeight = FontWeight.W400,
+                    fontSize = 12.sp,
+                    lineHeight = 16.sp,
+                    color = Gray
+                    )
+                }
+            }
+            CardChoose(
+                modifier = Modifier.padding(top = 8.dp),
+                onDelete = onDelete1,
+                state = state1,
+                cardNumber = "**** **** 3124",
+                makeChoose = makeChooseCard1,
+                othChoose = othChoose,
+                textColor = textColor,
+                secondaryColor = secondaryColor
             )
-            Text(
-                desc,
-                fontWeight = FontWeight.W400,
-                fontSize = 12.sp,
-                lineHeight = 16.sp,
-                color = Gray
+            CardChoose(
+                modifier = Modifier.padding(top = 8.dp),
+                onDelete = onDelete2,
+                state = state2,
+                cardNumber = "**** **** 7345",
+                makeChoose = makeChooseCard2,
+                othChoose = othChoose,
+                textColor = textColor,
+                secondaryColor = secondaryColor
             )
         }
     }

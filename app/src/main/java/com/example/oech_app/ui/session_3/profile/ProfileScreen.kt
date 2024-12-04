@@ -11,7 +11,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_3.add_payment_method.AddPayMethScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
-import com.example.oech_app.ui.session_4.WalletScreen
+import com.example.oech_app.ui.session_4.wallet.WalletScreen
 import com.example.session_1.R
 
 class ProfileScreen(private val viewModel: Session2ViewModel): Screen {

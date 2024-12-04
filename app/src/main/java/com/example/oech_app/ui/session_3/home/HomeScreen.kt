@@ -10,7 +10,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.ui.session_2.Session2ViewModel
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
-import com.example.oech_app.ui.session_4.WalletScreen
+import com.example.oech_app.ui.session_4.wallet.WalletScreen
 
 class HomeScreen(private val viewModel: Session2ViewModel): Screen {
 

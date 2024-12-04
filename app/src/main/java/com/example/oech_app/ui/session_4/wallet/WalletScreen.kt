@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_4
+package com.example.oech_app.ui.session_4.wallet
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

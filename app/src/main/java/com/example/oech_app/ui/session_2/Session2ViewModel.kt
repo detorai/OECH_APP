@@ -528,4 +528,16 @@ class Session2ViewModel: ViewModel() {
     fun onClickBalance(){
         _balanceState.value = !balanceState.value
     }
+    private var _choose = MutableStateFlow(1)
+    var choose = _choose.asStateFlow()
+
+    fun changePayMeth(index: Int){
+        _choose.value = index
+    }
+    private var _othChoose = MutableStateFlow(1)
+    var othChoose = _othChoose.asStateFlow()
+
+    fun changeCard(index: Int){
+        _othChoose.value = index
+    }
 }

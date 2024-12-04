@@ -22,10 +22,12 @@ class AddPayMethScreen(private val viewModel: Session2ViewModel): Screen {
     override fun Content() {
         val navigator = LocalNavigator.current
 
-        var choose by remember { mutableStateOf(false)}
-        var othChoose by remember { mutableStateOf(false)}
+        val choose = viewModel.choose.collectAsState().value
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
+        val othChoose = viewModel.othChoose.collectAsState().value
+        var state1 by remember { mutableStateOf(true)}
+        var state2 by remember { mutableStateOf(true)}
 
 
         AddPaymentMethod(
@@ -36,11 +38,22 @@ class AddPayMethScreen(private val viewModel: Session2ViewModel): Screen {
             choose = choose,
             othChoose = othChoose,
             makeChoose1 = {
-                choose = !choose
+                viewModel.changePayMeth(1)
             },
             makeChoose2 = {
-                othChoose = !othChoose
-            }
+                viewModel.changePayMeth(2)
+            },
+            makeChooseCard1 = {
+                viewModel.changeCard(1)
+            },
+            makeChooseCard2 = {
+                viewModel.changeCard(2)
+            },
+            onDelete1 = { state1 = false },
+            onDelete2 = { state2 = false },
+            state1 = state1,
+            state2 = state2
         )
+
     }
 }
