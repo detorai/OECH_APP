@@ -11,12 +11,13 @@ class TrackingPackageScreen: Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
+
     @Composable
     override fun Content() {
+
         val navigator = LocalNavigator.currentOrThrow
 
         TrackingPackage(
-
         )
     }
 }

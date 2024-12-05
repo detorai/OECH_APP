@@ -1,4 +1,4 @@
-package com.example.oech_app.ui.session_2
+package com.example.oech_app
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
@@ -23,7 +23,7 @@ import java.security.SecureRandom
 import kotlin.random.Random
 
 
-class Session2ViewModel: ViewModel() {
+class OechAppViewModel: ViewModel() {
 
     private val _userList = MutableStateFlow<List<Users>>(emptyList())
     val userList: StateFlow<List<Users>> get() = _userList
@@ -540,4 +540,6 @@ class Session2ViewModel: ViewModel() {
     fun changeCard(index: Int){
         _othChoose.value = index
     }
+
+
 }

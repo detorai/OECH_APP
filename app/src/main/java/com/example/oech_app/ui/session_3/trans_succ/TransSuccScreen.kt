@@ -7,15 +7,17 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
-import com.example.oech_app.ui.session_2.Session2ViewModel
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.oech_app.OechAppViewModel
+import com.example.oech_app.ui.session_4.tracking_package.TrackingPackageScreen
 
-class TransSuccScreen(private val viewModel: Session2ViewModel): Screen {
+class TransSuccScreen(private val viewModel: OechAppViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.current
+        val navigator = LocalNavigator.currentOrThrow
 
         val trackNum = viewModel.trackNum.collectAsState().value
         val loaded = viewModel.loaded.collectAsState().value
@@ -27,8 +29,10 @@ class TransSuccScreen(private val viewModel: Session2ViewModel): Screen {
         TransSucc(
             loaded = loaded,
             trackNum = trackNum,
-            onBack = {},
-            onTrack = {}
+            onBack = {navigator.pop()},
+            onTrack = {
+                navigator.push(TrackingPackageScreen())
+            }
         )
     }
 }

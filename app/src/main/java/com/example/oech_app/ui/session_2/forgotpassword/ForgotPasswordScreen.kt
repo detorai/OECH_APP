@@ -1,16 +1,15 @@
 package com.example.oech_app.ui.session_2.forgotpassword
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
-import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.OechAppViewModel
 import com.example.oech_app.ui.session_2.otpverification.OTPScreen
 
-class ForgotPasswordScreen(private val viewModel: Session2ViewModel): Screen {
+class ForgotPasswordScreen(private val viewModel: OechAppViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 

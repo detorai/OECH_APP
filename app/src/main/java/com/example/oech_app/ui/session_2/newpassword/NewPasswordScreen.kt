@@ -5,10 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
-import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.OechAppViewModel
 import com.example.oech_app.ui.session_3.home.HomeScreen
 
-class NewPasswordScreen(private val viewModel: Session2ViewModel): Screen {
+class NewPasswordScreen(private val viewModel: OechAppViewModel): Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current

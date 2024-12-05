@@ -10,17 +10,20 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
-import com.example.oech_app.ui.session_2.Session2ViewModel
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.oech_app.OechAppViewModel
+import com.example.oech_app.ui.session_3.trans_succ.TransSuccScreen
 
-class SAPScreen(private val viewModel: Session2ViewModel): Screen {
+class SAPScreen(private val viewModel: OechAppViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.current
+        val navigator = LocalNavigator.currentOrThrow
 
-        val colors = viewModel.getColors(viewModel.checked.value)
+        val checked = viewModel.checked.collectAsState().value
+        val colors = viewModel.getColors(checked)
         val address0 = viewModel.addressO.collectAsState().value
         val countryO = viewModel.countryO.collectAsState().value
         val phoneO = viewModel.phoneO.collectAsState().value
@@ -110,7 +113,7 @@ class SAPScreen(private val viewModel: Session2ViewModel): Screen {
                 },
                 state = addDest,
                 onEdit = {state = false},
-                onPayment = {}
+                onPayment = {navigator.push(TransSuccScreen(viewModel))}
         )
     }
 }

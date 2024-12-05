@@ -6,7 +6,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
-import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.OechAppViewModel
 import com.example.oech_app.ui.session_2.signup.SignUpScreen
 
 class Onboarding3Screen: Screen {
@@ -16,7 +16,7 @@ class Onboarding3Screen: Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
-        val viewModel = viewModel<Session2ViewModel>()
+        val viewModel = viewModel<OechAppViewModel>()
 
         Onboarding3(
             onClickPrimary = {navigator?.push(SignUpScreen(viewModel))}

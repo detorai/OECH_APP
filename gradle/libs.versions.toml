@@ -1,14 +1,14 @@
 [versions]
-agp = "8.6.0"
+agp = "8.6.1"
 jbcrypt = "0.4"
 kotlin = "1.9.0"
-coreKtx = "1.13.1"
+coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.6"
+lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
-composeBom = "2024.04.01"
+composeBom = "2024.11.00"
 lifecycleViewmodelCompose = "2.8.7"
 material = "1.7.5"
 materialVersion = "1.12.0"
@@ -16,6 +16,9 @@ ui = "1.7.5"
 uiTooling = "1.7.5"
 voyagerVersion = "1.1.0-beta02"
 firebaseCrashlyticsBuildtools = "3.0.2"
+yandexMapkitKmp = "0.1.0"
+yandexMapkitKmpCompose = "0.1.0"
+core = "1.46.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,6 +52,9 @@ voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", vers
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
+yandex-mapkit-kmp = { module = "ru.sulgik.mapkit:yandex-mapkit-kmp", version.ref = "yandexMapkitKmp" }
+yandex-mapkit-kmp-compose = { module = "ru.sulgik.mapkit:yandex-mapkit-kmp-compose", version.ref = "yandexMapkitKmpCompose" }
+core = { group = "com.google.ar", name = "core", version.ref = "core" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

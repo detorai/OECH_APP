@@ -8,10 +8,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
-import com.example.oech_app.ui.session_2.Session2ViewModel
+import com.example.oech_app.OechAppViewModel
 import com.example.oech_app.ui.session_2.signin.SignInScreen
 
-class SignUpScreen(private val viewModel: Session2ViewModel): Screen {
+class SignUpScreen(private val viewModel: OechAppViewModel): Screen {
 
     override val key: ScreenKey = uniqueScreenKey
 
