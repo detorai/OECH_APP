@@ -31,7 +31,7 @@ class TransSuccScreen(private val viewModel: OechAppViewModel): Screen {
             trackNum = trackNum,
             onBack = {navigator.pop()},
             onTrack = {
-                navigator.push(TrackingPackageScreen())
+                navigator.push(TrackingPackageScreen(viewModel))
             }
         )
     }

@@ -16,9 +16,10 @@ ui = "1.7.5"
 uiTooling = "1.7.5"
 voyagerVersion = "1.1.0-beta02"
 firebaseCrashlyticsBuildtools = "3.0.2"
+core = "1.46.0"
 yandexMapkitKmp = "0.1.0"
 yandexMapkitKmpCompose = "0.1.0"
-core = "1.46.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,9 +53,9 @@ voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", vers
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
-yandex-mapkit-kmp = { module = "ru.sulgik.mapkit:yandex-mapkit-kmp", version.ref = "yandexMapkitKmp" }
-yandex-mapkit-kmp-compose = { module = "ru.sulgik.mapkit:yandex-mapkit-kmp-compose", version.ref = "yandexMapkitKmpCompose" }
 core = { group = "com.google.ar", name = "core", version.ref = "core" }
+yandex-mapkit-kmp = { group = "ru.sulgik.mapkit", name = "yandex-mapkit-kmp", version.ref = "yandexMapkitKmp" }
+yandex-mapkit-kmp-compose = { group = "ru.sulgik.mapkit", name = "yandex-mapkit-kmp-compose", version.ref = "yandexMapkitKmpCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

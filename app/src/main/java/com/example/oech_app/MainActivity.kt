@@ -17,8 +17,7 @@ import com.example.oech_app.ui.session_2.signup.SignUpScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
 import com.example.oech_app.ui.session_3.send_a_package.SAPScreen
-import com.example.oech_app.ui.session_4.tracking_package.TrackingPackageScreen
-import com.yandex.mapkit.MapKitFactory
+import ru.sulgik.mapkit.MapKit
 
 class MainActivity : ComponentActivity() {
 
@@ -27,9 +26,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MapKitFactory.setApiKey("6cae8543-2d4f-4600-8707-7927d6a632fc")
-        MapKitFactory.initialize(this)
-        MapKitFactory.getInstance().onStart()
+        MapKit.setApiKey("6cae8543-2d4f-4600-8707-7927d6a632fc")
+        MapKit.initialize(this)
+        MapKit.getInstance().onStart()
 
         val session1 = listOf(
             Onboarding3Screen(),
@@ -52,11 +51,11 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            Navigator(TrackingPackageScreen())
+            Navigator(SAPScreen(viewModel))
         }
     }
     override fun onStop() {
-        MapKitFactory.getInstance().onStop()
+        MapKit.getInstance().onStop()
         super.onStop()
     }
 }

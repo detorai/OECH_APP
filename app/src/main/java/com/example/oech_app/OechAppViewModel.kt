@@ -22,7 +22,6 @@ import org.mindrot.jbcrypt.BCrypt
 import java.security.SecureRandom
 import kotlin.random.Random
 
-
 class OechAppViewModel: ViewModel() {
 
     private val _userList = MutableStateFlow<List<Users>>(emptyList())
@@ -541,5 +540,31 @@ class OechAppViewModel: ViewModel() {
         _othChoose.value = index
     }
 
+    private val _trackState1 = MutableStateFlow(false)
+    val trackState1 = _trackState1.asStateFlow()
 
+    fun onTrackState1(state: Boolean){
+        _trackState1.value = !_trackState1.value
+    }
+
+    private val _trackState2 = MutableStateFlow(false)
+    val trackState2 = _trackState2.asStateFlow()
+
+    fun onTrackState2(state: Boolean){
+        _trackState2.value = !_trackState2.value
+    }
+
+    private val _trackState3 = MutableStateFlow(false)
+    val trackState3 = _trackState3.asStateFlow()
+
+    fun onTrackState3(state: Boolean){
+        _trackState3.value = !_trackState3.value
+    }
+
+    private val _trackState4 = MutableStateFlow(false)
+    val trackState4 = _trackState4.asStateFlow()
+
+    fun onTrackState4(state: Boolean){
+        _trackState4.value = !_trackState4.value
+    }
 }

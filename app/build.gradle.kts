@@ -46,12 +46,6 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
-
-
-        pickFirst("lib/x86_64/libnative-lib.so")
-        pickFirst("lib/x86/libnative-lib.so")
-        pickFirst("lib/armeabi-v7a/libnative-lib.so")
-        pickFirst("lib/arm64-v8a/libnative-lib.so")
     }
 }
 
@@ -67,6 +61,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.core)
+    implementation(libs.yandex.mapkit.kmp)
+    implementation(libs.yandex.mapkit.kmp.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,6 +87,4 @@ dependencies {
     implementation (libs.androidx.material)
     implementation (libs.ui.tooling)
     implementation (libs.material)
-    implementation(libs.yandex.mapkit.kmp)
-    implementation(libs.yandex.mapkit.kmp.compose)
 }
