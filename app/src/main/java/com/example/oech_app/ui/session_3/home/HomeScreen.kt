@@ -10,6 +10,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.OechAppViewModel
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
+import com.example.oech_app.ui.session_4.tracking_package.TrackingPackageScreen
 import com.example.oech_app.ui.session_4.wallet.WalletScreen
 
 class HomeScreen(private val viewModel: OechAppViewModel): Screen {
@@ -43,7 +44,11 @@ class HomeScreen(private val viewModel: OechAppViewModel): Screen {
                 viewModel.changeSelect(2)
                 navigator.push(WalletScreen(viewModel))
             },
-            selectedTabIndex = selectedTabIndex
+            selectedTabIndex = selectedTabIndex,
+            onTrack = {
+                viewModel.changeSelect(3)
+                navigator.push(TrackingPackageScreen(viewModel))
+            }
         )
     }
 }

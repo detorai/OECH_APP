@@ -61,8 +61,12 @@ class TrackingPackageScreen(private val viewModel: OechAppViewModel): Screen {
                 navigator.push(WalletScreen(viewModel))
             },
             selectedTabIndex = selectedTabIndex,
-            onTrack = {},
-            onPackInfo = {}
+            onTrack = {
+                viewModel.changeSelect(3)
+                navigator.push(TrackingPackageScreen(viewModel))
+            },
+            onPackInfo = {
+            }
         )
     }
 }

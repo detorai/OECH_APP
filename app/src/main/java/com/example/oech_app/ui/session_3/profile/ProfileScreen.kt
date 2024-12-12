@@ -11,6 +11,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.oech_app.OechAppViewModel
 import com.example.oech_app.ui.session_3.add_payment_method.AddPayMethScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
+import com.example.oech_app.ui.session_4.tracking_package.TrackingPackageScreen
 import com.example.oech_app.ui.session_4.wallet.WalletScreen
 import com.example.session_1.R
 
@@ -48,7 +49,7 @@ class ProfileScreen(private val viewModel: OechAppViewModel): Screen {
             onClickBalance = viewModel:: onClickBalance,
             onBankClick = { navigator.push(AddPayMethScreen(viewModel)) },
             onHome = {
-                selectedTabIndex = 1
+                viewModel.changeSelect(1)
                 navigator.push(HomeScreen(viewModel))
                      },
             onWallet = {
@@ -56,11 +57,15 @@ class ProfileScreen(private val viewModel: OechAppViewModel): Screen {
                 navigator.push(WalletScreen(viewModel))
             },
             onProfile = {
-                selectedTabIndex = 4
+                viewModel.changeSelect(4)
                 navigator.push(ProfileScreen(viewModel))
             },
             selectedTabIndex = selectedTabIndex,
-            onClickBack = {navigator.pop()}
+            onClickBack = {navigator.pop()},
+            onTrack = {
+                viewModel.changeSelect(3)
+                navigator.push(TrackingPackageScreen(viewModel))
+            }
         )
     }
 }

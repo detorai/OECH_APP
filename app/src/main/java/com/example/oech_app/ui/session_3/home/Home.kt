@@ -22,7 +22,8 @@ fun Home(
     onHome: ()-> Unit,
     onProfile: ()-> Unit,
     onWallet: ()-> Unit,
-    selectedTabIndex: Int
+    selectedTabIndex: Int,
+    onTrack: ()-> Unit
 ){
     Scaffold(
         bottomBar = {
@@ -31,7 +32,7 @@ fun Home(
                 mainColor = mainColor,
                 onProfile = onProfile,
                 onHome = onHome,
-                onTrack = {},
+                onTrack = onTrack,
                 onWallet = onWallet,
                 selectedTabIndex = selectedTabIndex
             )

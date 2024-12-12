@@ -3,16 +3,12 @@ package com.example.oech_app.ui.session_3.send_a_package
 
 
 
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.verticalScroll
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.oech_app.common.AppTopBar
@@ -86,7 +82,6 @@ fun SendAPackage(
             )
         },
     ) {innerPadding ->
-        if (!screenState) {
             Empty(
                 modifier = Modifier.padding(innerPadding).verticalScroll(ScrollState(0)),
                 addressO = addressO,
@@ -124,7 +119,6 @@ fun SendAPackage(
                 items = items,
                 state = state
             )
-        } else {
             Receipt(
                 addressO = addressO,
                 addressD1 = addressD1,
@@ -143,7 +137,7 @@ fun SendAPackage(
                 onEdit = onEdit,
                 onPayment = onPayment
             )
-        }
+
     }
 }
 

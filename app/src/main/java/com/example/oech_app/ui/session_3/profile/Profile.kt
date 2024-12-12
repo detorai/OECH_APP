@@ -28,7 +28,8 @@ fun Profile(
     onProfile: ()-> Unit,
     selectedTabIndex: Int,
     onWallet: ()-> Unit,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    onTrack: ()-> Unit
 ) {
     Scaffold(
         topBar = {

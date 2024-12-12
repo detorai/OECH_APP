@@ -28,7 +28,8 @@ fun Wallet(
     onClickBalance: () -> Unit,
     onBank: ()-> Unit,
     onTransfer: ()-> Unit,
-    onCard: ()-> Unit
+    onCard: ()-> Unit,
+    onTrack: ()-> Unit
 ){
     Scaffold(
         topBar = { AppTopBar(
@@ -42,7 +43,7 @@ fun Wallet(
                 mainColor = mainColor,
                 onHome = onHome,
                 onWallet = onWallet,
-                onTrack = {},
+                onTrack = onTrack,
                 onProfile = onProfile,
                 selectedTabIndex = selectedTabIndex
             )
