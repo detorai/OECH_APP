@@ -11,35 +11,47 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.Text
+import androidx.compose.material3.TriStateCheckbox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oech_app.ui.theme.Gray
+import com.example.oech_app.ui.theme.Primary
 
 
 @Composable
 fun CheckboxWithTextColumn(
     state1: Boolean,
     onState1: (Boolean) -> Unit,
+    enabled1: Boolean,
 
     state2: Boolean,
     onState2: (Boolean) -> Unit,
+    enabled2: Boolean,
 
     state3: Boolean,
     onState3: (Boolean) -> Unit,
+    enabled3: Boolean,
 
     state4: Boolean,
     onState4: (Boolean) -> Unit,
+    enabled4: Boolean,
 
-    textColor: Color
-) {
+    textColor: Color,
 
+    ) {
+    var checkedState by remember { mutableStateOf(ToggleableState.Indeterminate) }
     Row(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
     ) {
@@ -52,10 +64,52 @@ fun CheckboxWithTextColumn(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
-                Checkbox(
-                    checked = state1,
-                    onCheckedChange = onState1
-                )
+                if (!enabled1) {
+                    TriStateCheckbox(
+                        state = checkedState,
+                        onClick = {
+                            checkedState =
+                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
+                                    ToggleableState.On
+                                else ToggleableState.Off
+                        },
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Gray,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Color.White,
+                            checkedBorderColor = Primary,
+                            uncheckedBorderColor = Primary,
+                            disabledBorderColor = Gray,
+                            disabledCheckedBoxColor = Gray,
+                            disabledUncheckedBoxColor = Gray,
+                            disabledUncheckedBorderColor = Gray,
+                            disabledIndeterminateBorderColor = Gray,
+                            disabledIndeterminateBoxColor = Gray
+                        ),
+                        enabled = false
+                    )
+                } else {
+                    Checkbox(
+                        checked = state1,
+                        onCheckedChange = onState1,
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Color.White,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Gray,
+                            checkedBorderColor = Gray,
+                            uncheckedBorderColor = Gray,
+                            disabledBorderColor = Primary,
+                            disabledCheckedBoxColor = Primary,
+                            disabledUncheckedBoxColor = Color.White,
+                            disabledUncheckedBorderColor = Primary,
+                            disabledIndeterminateBorderColor = Primary,
+                            disabledIndeterminateBoxColor = Primary
+                        ),
+                        enabled = false
+                    )
+                }
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
@@ -71,10 +125,52 @@ fun CheckboxWithTextColumn(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
-                Checkbox(
-                    checked = state2,
-                    onCheckedChange = onState2
-                )
+                if (!enabled2) {
+                    TriStateCheckbox(
+                        state = checkedState,
+                        onClick = {
+                            checkedState =
+                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
+                                    ToggleableState.On
+                                else ToggleableState.Off
+                        },
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Gray,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Color.White,
+                            checkedBorderColor = Primary,
+                            uncheckedBorderColor = Primary,
+                            disabledBorderColor = Gray,
+                            disabledCheckedBoxColor = Gray,
+                            disabledUncheckedBoxColor = Gray,
+                            disabledUncheckedBorderColor = Gray,
+                            disabledIndeterminateBorderColor = Gray,
+                            disabledIndeterminateBoxColor = Gray
+                        ),
+                        enabled = false
+                    )
+                } else {
+                    Checkbox(
+                        checked = state2,
+                        onCheckedChange = onState2,
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Color.White,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Gray,
+                            checkedBorderColor = Gray,
+                            uncheckedBorderColor = Gray,
+                            disabledBorderColor = Primary,
+                            disabledCheckedBoxColor = Primary,
+                            disabledUncheckedBoxColor = Color.White,
+                            disabledUncheckedBorderColor = Primary,
+                            disabledIndeterminateBorderColor = Primary,
+                            disabledIndeterminateBoxColor = Primary
+                        ),
+                        enabled = false
+                    )
+                }
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
@@ -92,10 +188,52 @@ fun CheckboxWithTextColumn(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
-                Checkbox(
-                    checked = state3,
-                    onCheckedChange = onState3
-                )
+                if (!enabled3) {
+                    TriStateCheckbox(
+                        state = checkedState,
+                        onClick = {
+                            checkedState =
+                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
+                                    ToggleableState.On
+                                else ToggleableState.Off
+                        },
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Gray,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Color.White,
+                            checkedBorderColor = Primary,
+                            uncheckedBorderColor = Primary,
+                            disabledBorderColor = Gray,
+                            disabledCheckedBoxColor = Gray,
+                            disabledUncheckedBoxColor = Gray,
+                            disabledUncheckedBorderColor = Gray,
+                            disabledIndeterminateBorderColor = Gray,
+                            disabledIndeterminateBoxColor = Gray
+                        ),
+                        enabled = false
+                    )
+                } else {
+                    Checkbox(
+                        checked = state3,
+                        onCheckedChange = onState3,
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Color.White,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Gray,
+                            checkedBorderColor = Gray,
+                            uncheckedBorderColor = Gray,
+                            disabledBorderColor = Primary,
+                            disabledCheckedBoxColor = Primary,
+                            disabledUncheckedBoxColor = Color.White,
+                            disabledUncheckedBorderColor = Primary,
+                            disabledIndeterminateBorderColor = Primary,
+                            disabledIndeterminateBoxColor = Primary
+                        ),
+                        enabled = false
+                    )
+                }
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
@@ -113,10 +251,52 @@ fun CheckboxWithTextColumn(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
-                Checkbox(
-                    checked = state4,
-                    onCheckedChange = onState4
-                )
+                if (!enabled4) {
+                    TriStateCheckbox(
+                        state = checkedState,
+                        onClick = {
+                            checkedState =
+                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
+                                    ToggleableState.On
+                                else ToggleableState.Off
+                        },
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Gray,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Color.White,
+                            checkedBorderColor = Primary,
+                            uncheckedBorderColor = Primary,
+                            disabledBorderColor = Gray,
+                            disabledCheckedBoxColor = Gray,
+                            disabledUncheckedBoxColor = Gray,
+                            disabledUncheckedBorderColor = Gray,
+                            disabledIndeterminateBorderColor = Gray,
+                            disabledIndeterminateBoxColor = Gray
+                        ),
+                        enabled = false
+                    )
+                } else {
+                    Checkbox(
+                        checked = state4,
+                        onCheckedChange = onState4,
+                        colors = CheckboxColors(
+                            checkedCheckmarkColor = Color.White,
+                            uncheckedCheckmarkColor = Color.White,
+                            checkedBoxColor = Gray,
+                            uncheckedBoxColor = Gray,
+                            checkedBorderColor = Gray,
+                            uncheckedBorderColor = Gray,
+                            disabledBorderColor = Primary,
+                            disabledCheckedBoxColor = Primary,
+                            disabledUncheckedBoxColor = Color.White,
+                            disabledUncheckedBorderColor = Primary,
+                            disabledIndeterminateBorderColor = Primary,
+                            disabledIndeterminateBoxColor = Primary
+                        ),
+                        enabled = false
+                    )
+                }
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
@@ -148,26 +328,3 @@ fun VerticalLine() {
 }
 
 
-@Preview
-@Composable
-fun MainScreen() {
-    CheckboxWithTextColumn(
-        state1 = true,
-        onState1 = {
-            it
-        },
-        state2 = true,
-        onState2 = {
-            it
-        },
-        state3 = true,
-        onState3 = {
-            it
-        },
-        state4 = true,
-        onState4 = {
-            it
-        },
-        textColor = Gray
-    )
-}

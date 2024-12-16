@@ -35,7 +35,6 @@ import com.example.oech_app.common.BottomTabBar
 import com.example.oech_app.common.common_s4.CheckboxWithTextColumn
 import com.example.oech_app.ui.theme.Gray
 import com.example.oech_app.ui.theme.Primary
-import com.example.oech_app.ui.theme.TextLighter
 import com.example.session_1.R
 import com.yandex.mapkit.mapview.MapView
 
@@ -99,7 +98,7 @@ fun TrackingPackage(
             fontWeight = FontWeight.W500,
             fontSize = 16.sp,
             lineHeight = 16.sp,
-            color = TextLighter,
+            color = textColor,
             modifier = Modifier.padding(top = 42.dp)
         )
         Row(
@@ -135,14 +134,19 @@ fun TrackingPackage(
         )
         CheckboxWithTextColumn(
             state1 = state1,
-            onState1 = onState1,
+            onState1 = {},
             state2 = state2,
             onState2 = onState2,
             state3 = state3,
             onState3 = onState3,
             state4 = state4,
             onState4 = onState4,
-            textColor = textColor
+            textColor = textColor,
+            enabled4 = false,
+            enabled3 = false,
+            enabled2 = false,
+            enabled1 = false,
+
         )
         Button(
             onClick = onPackInfo,
