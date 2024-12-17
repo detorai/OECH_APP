@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,6 +54,16 @@ fun TrackingPackage(
 
     state4: Boolean,
     onState4: (Boolean) -> Unit,
+
+    checkedState1: ToggleableState,
+    checkedState2: ToggleableState,
+    checkedState3: ToggleableState,
+    checkedState4: ToggleableState,
+
+    enabled1: Boolean,
+    enabled2: Boolean,
+    enabled3: Boolean,
+    enabled4: Boolean,
 
     textColor: Color,
 
@@ -134,19 +145,29 @@ fun TrackingPackage(
         )
         CheckboxWithTextColumn(
             state1 = state1,
-            onState1 = {},
+            onState1 = onState1,
+            enabled1 = enabled1,
+            checkedState1 = checkedState1,
+
             state2 = state2,
             onState2 = onState2,
+            enabled2 = enabled2,
+            checkedState2 = checkedState2,
+
+
             state3 = state3,
             onState3 = onState3,
+            enabled3 = enabled3,
+            checkedState3 = checkedState3,
+
+
             state4 = state4,
             onState4 = onState4,
-            textColor = textColor,
-            enabled4 = false,
-            enabled3 = false,
-            enabled2 = false,
-            enabled1 = false,
+            enabled4 = enabled4,
+            checkedState4 = checkedState4,
 
+
+            textColor = textColor
         )
         Button(
             onClick = onPackInfo,

@@ -15,10 +15,6 @@ import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.TriStateCheckbox
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,23 +31,25 @@ fun CheckboxWithTextColumn(
     state1: Boolean,
     onState1: (Boolean) -> Unit,
     enabled1: Boolean,
+    checkedState1: ToggleableState,
 
     state2: Boolean,
     onState2: (Boolean) -> Unit,
     enabled2: Boolean,
+    checkedState2: ToggleableState,
 
     state3: Boolean,
     onState3: (Boolean) -> Unit,
     enabled3: Boolean,
+    checkedState3: ToggleableState,
 
     state4: Boolean,
     onState4: (Boolean) -> Unit,
     enabled4: Boolean,
+    checkedState4: ToggleableState,
 
     textColor: Color,
-
     ) {
-    var checkedState by remember { mutableStateOf(ToggleableState.Indeterminate) }
     Row(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
     ) {
@@ -66,13 +64,8 @@ fun CheckboxWithTextColumn(
             ) {
                 if (!enabled1) {
                     TriStateCheckbox(
-                        state = checkedState,
-                        onClick = {
-                            checkedState =
-                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
-                                    ToggleableState.On
-                                else ToggleableState.Off
-                        },
+                        state = checkedState1,
+                        onClick = {},
                         colors = CheckboxColors(
                             checkedCheckmarkColor = Color.White,
                             uncheckedCheckmarkColor = Gray,
@@ -127,13 +120,8 @@ fun CheckboxWithTextColumn(
             ) {
                 if (!enabled2) {
                     TriStateCheckbox(
-                        state = checkedState,
-                        onClick = {
-                            checkedState =
-                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
-                                    ToggleableState.On
-                                else ToggleableState.Off
-                        },
+                        state = checkedState2,
+                        onClick = {},
                         colors = CheckboxColors(
                             checkedCheckmarkColor = Color.White,
                             uncheckedCheckmarkColor = Gray,
@@ -190,13 +178,8 @@ fun CheckboxWithTextColumn(
             ) {
                 if (!enabled3) {
                     TriStateCheckbox(
-                        state = checkedState,
-                        onClick = {
-                            checkedState =
-                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
-                                    ToggleableState.On
-                                else ToggleableState.Off
-                        },
+                        state = checkedState3,
+                        onClick = {},
                         colors = CheckboxColors(
                             checkedCheckmarkColor = Color.White,
                             uncheckedCheckmarkColor = Gray,
@@ -253,13 +236,8 @@ fun CheckboxWithTextColumn(
             ) {
                 if (!enabled4) {
                     TriStateCheckbox(
-                        state = checkedState,
-                        onClick = {
-                            checkedState =
-                                if (checkedState == ToggleableState.Indeterminate || checkedState == ToggleableState.Off)
-                                    ToggleableState.On
-                                else ToggleableState.Off
-                        },
+                        state = checkedState4,
+                        onClick = {},
                         colors = CheckboxColors(
                             checkedCheckmarkColor = Color.White,
                             uncheckedCheckmarkColor = Gray,

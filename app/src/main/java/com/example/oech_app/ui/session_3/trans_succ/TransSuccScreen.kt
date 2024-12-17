@@ -20,7 +20,7 @@ class TransSuccScreen(private val viewModel: OechAppViewModel): Screen {
         val navigator = LocalNavigator.currentOrThrow
 
         val trackNum = viewModel.trackNum.collectAsState().value
-        val loaded = viewModel.loaded.collectAsState().value
+        val loaded = viewModel.loadedStart.collectAsState().value
 
         LaunchedEffect(!loaded) {
             viewModel.transSuccessful()

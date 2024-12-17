@@ -23,29 +23,58 @@ class TrackingPackageScreen(private val viewModel: OechAppViewModel): Screen {
 
         val navigator = LocalNavigator.currentOrThrow
         val trackNum = viewModel.trackNum.collectAsState().value
+
         val state1 = viewModel.trackState1.collectAsState().value
         val state2 = viewModel.trackState2.collectAsState().value
         val state3 = viewModel.trackState3.collectAsState().value
         val state4 = viewModel.trackState4.collectAsState().value
+
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
+
         val selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value
+
+        val enabled1 = viewModel.enabled1.collectAsState().value
+        val enabled2 = viewModel.enabled2.collectAsState().value
+        val enabled3 = viewModel.enabled3.collectAsState().value
+        val enabled4 = viewModel.enabled4.collectAsState().value
+
+        val checkedState1 = viewModel.checkedState1.collectAsState().value
+        val checkedState2 = viewModel.checkedState2.collectAsState().value
+        val checkedState3 = viewModel.checkedState3.collectAsState().value
+        val checkedState4 = viewModel.checkedState4.collectAsState().value
 
 
         LaunchedEffect(Unit) {
             viewModel.changeSelect(3)
+            viewModel.passState()
         }
 
         TrackingPackage(
             trackNum = trackNum,
+
             state1 = state1,
             onState1 = viewModel::onTrackState1,
+            enabled1 = enabled1,
+            checkedState1 = checkedState1,
+
             state2 = state2,
             onState2 = viewModel::onTrackState2,
+            enabled2 = enabled2,
+            checkedState2 = checkedState2,
+
+
             state3 = state3,
             onState3 = viewModel::onTrackState3,
+            enabled3 = enabled3,
+            checkedState3 =checkedState3,
+
+
             state4 = state4,
             onState4 = viewModel::onTrackState4,
+            enabled4 = enabled4,
+            checkedState4 = checkedState4,
+
             textColor = colors.textColor,
             mainColor = colors.mainColor,
             onHome = {
@@ -66,7 +95,8 @@ class TrackingPackageScreen(private val viewModel: OechAppViewModel): Screen {
                 navigator.push(TrackingPackageScreen(viewModel))
             },
             onPackInfo = {
-            }
+            },
+
         )
     }
 }

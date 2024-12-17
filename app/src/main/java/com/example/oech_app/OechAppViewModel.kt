@@ -3,6 +3,7 @@ package com.example.oech_app
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.state.ToggleableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.oech_app.data.ColorsScheme
@@ -454,14 +455,14 @@ class OechAppViewModel: ViewModel() {
     private val _trackNum = MutableStateFlow("")
     val trackNum = _trackNum.asStateFlow()
 
-    private val _loaded = MutableStateFlow(false)
-    val loaded = _loaded.asStateFlow()
+    private val _loadedStart = MutableStateFlow(false)
+    val loadedStart = _loadedStart.asStateFlow()
 
     @OptIn(DelicateCoroutinesApi::class)
     fun transSuccessful(){
         GlobalScope.launch {
             delay(5000)
-            _loaded.value = true
+            _loadedStart.value = true
         }
     }
 
@@ -567,4 +568,73 @@ class OechAppViewModel: ViewModel() {
     fun onTrackState4(state: Boolean){
         _trackState4.value = !_trackState4.value
     }
+
+    private val _enabled1 = MutableStateFlow(false)
+    val enabled1 = _enabled1.asStateFlow()
+
+    private val _enabled2 = MutableStateFlow(false)
+    val enabled2 = _enabled2.asStateFlow()
+
+    private val _enabled3 = MutableStateFlow(false)
+    val enabled3 = _enabled3.asStateFlow()
+
+    private val _enabled4 = MutableStateFlow(false)
+    val enabled4 = _enabled4.asStateFlow()
+
+    @OptIn(DelicateCoroutinesApi::class)
+    fun passState(){
+        GlobalScope.launch {
+            _enabled1.value = true
+            delay(5000)
+            _trackState1.value = true
+            _enabled2.value = true
+            delay(5000)
+            _trackState2.value = true
+            _enabled3.value = true
+            delay(5000)
+            _trackState3.value = true
+            _enabled4.value = true
+            delay(5000)
+            _trackState4.value = true
+        }
+    }
+
+    private val _checkedState1 = MutableStateFlow(ToggleableState.Indeterminate)
+    val checkedState1 = _checkedState1.asStateFlow()
+
+    private val _checkedState2 = MutableStateFlow(ToggleableState.Indeterminate)
+    val checkedState2 = _checkedState2.asStateFlow()
+
+    private val _checkedState3 = MutableStateFlow(ToggleableState.Indeterminate)
+    val checkedState3 = _checkedState3.asStateFlow()
+
+    private val _checkedState4 = MutableStateFlow(ToggleableState.Indeterminate)
+    val checkedState4 = _checkedState4.asStateFlow()
+
+
+    private val _loadedEnd = MutableStateFlow(false)
+    val loadedEnd = _loadedEnd.asStateFlow()
+
+    @OptIn(DelicateCoroutinesApi::class)
+    fun transEnd(){
+        GlobalScope.launch {
+            delay(5000)
+            _loadedEnd.value = true
+        }
+    }
+
+    private val _feedback = MutableStateFlow("")
+    val feedback = _feedback.asStateFlow()
+
+    fun addFeedback(text: String){
+        _feedback.value = text
+    }
+
+    private val _rating = MutableStateFlow(0)
+    val rating = _rating.asStateFlow()
+
+    fun onRating(star: Int){
+        _rating.value = star
+    }
+
 }

@@ -17,6 +17,7 @@ import com.example.oech_app.ui.session_2.signup.SignUpScreen
 import com.example.oech_app.ui.session_3.home.HomeScreen
 import com.example.oech_app.ui.session_3.profile.ProfileScreen
 import com.example.oech_app.ui.session_3.send_a_package.SAPScreen
+import com.example.oech_app.ui.session_4.dev_succ.DevSuccScreen
 import ru.sulgik.mapkit.MapKit
 
 class MainActivity : ComponentActivity() {
@@ -51,7 +52,7 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            Navigator(SAPScreen(viewModel))
+            Navigator(DevSuccScreen(viewModel))
         }
     }
     override fun onStop() {
