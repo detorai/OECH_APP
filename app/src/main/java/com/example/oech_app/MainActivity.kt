@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            Navigator(DevSuccScreen(viewModel))
+            Navigator(HomeScreen(viewModel))
         }
     }
     override fun onStop() {

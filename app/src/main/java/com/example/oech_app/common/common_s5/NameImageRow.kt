@@ -23,11 +23,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.oech_app.ui.theme.Primary
 import com.example.session_1.R
+
 
 @Composable
 fun NameAndImageRow(
@@ -39,18 +38,19 @@ fun NameAndImageRow(
     description: String,
     textColor: Color,
     textSizeWelc: Int,
-    textSizeDesc: Int
+    textSizeDesc: Int,
+    boxHeight: Int
     ){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.fillMaxWidth().wrapContentHeight().background(
+        modifier = modifier.fillMaxWidth().wrapContentHeight().background(
             color = backgroundColor,
             shape = RoundedCornerShape(8.dp)
         )
     ) {
         Box(
-            modifier = modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().height(boxHeight.dp)
         ) {
             Image(
                 painter = painterResource(image),
@@ -79,7 +79,7 @@ fun NameAndImageRow(
                 )
             }
             Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.notification),
+                imageVector = ImageVector.vectorResource(trailingIcon),
                 tint = Color.White,
                 contentDescription = "trailing icon",
                 modifier = Modifier.align(Alignment.CenterEnd).padding(end = 10.dp).size(24.dp)
@@ -87,7 +87,7 @@ fun NameAndImageRow(
         }
     }
 }
-@Preview
+/*@Preview
 @Composable
 fun PrevName(){
     NameAndImageRow(
@@ -101,4 +101,4 @@ fun PrevName(){
         textSizeDesc = 12,
         textSizeWelc = 24
     )
-}
+}*/

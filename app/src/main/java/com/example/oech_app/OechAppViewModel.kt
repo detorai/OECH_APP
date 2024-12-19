@@ -637,4 +637,10 @@ class OechAppViewModel: ViewModel() {
         _rating.value = star
     }
 
+    private val _searchText = MutableStateFlow("")
+    val searchText = _searchText.asStateFlow()
+
+    fun onSearchText(text: String){
+        _searchText.value = text
+    }
 }

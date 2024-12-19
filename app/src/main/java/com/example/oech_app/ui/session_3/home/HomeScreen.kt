@@ -24,6 +24,7 @@ class HomeScreen(private val viewModel: OechAppViewModel): Screen {
         val checked = viewModel.checked.collectAsState().value
         val colors = viewModel.getColors(checked)
         val selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value
+        val inputText = viewModel.searchText.collectAsState().value
 
         LaunchedEffect(Unit) {
             viewModel.changeSelect(1)
@@ -48,7 +49,9 @@ class HomeScreen(private val viewModel: OechAppViewModel): Screen {
             onTrack = {
                 viewModel.changeSelect(3)
                 navigator.push(TrackingPackageScreen(viewModel))
-            }
+            },
+            inputText = inputText,
+            onValue = viewModel:: onSearchText
         )
     }
 }

@@ -87,4 +87,6 @@ dependencies {
     implementation (libs.androidx.material)
     implementation (libs.ui.tooling)
     implementation (libs.material)
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.pager.indicators)
 }
