@@ -6,8 +6,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.state.ToggleableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.oech_app.data.ColorsScheme
-import com.example.oech_app.data.Users
+import com.example.oech_app.data.model.ColorsScheme
+import com.example.oech_app.data.model.Users
 import com.example.oech_app.ui.theme.TextLighter
 import com.example.oech_app.ui.theme.primaryDark
 import com.example.oech_app.ui.theme.secondaryDark
@@ -320,7 +320,7 @@ class OechAppViewModel: ViewModel() {
         _checked.value = !_checked.value
     }
 
-    fun getColors(checked: Boolean): ColorsScheme{
+    fun getColors(checked: Boolean): ColorsScheme {
         return if (checked) {
             ColorsScheme(
                 mainColor = primaryDark,

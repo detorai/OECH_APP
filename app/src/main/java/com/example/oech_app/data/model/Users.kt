@@ -1,4 +1,4 @@
-package com.example.oech_app.data
+package com.example.oech_app.data.model
 
 data class Users(
     val name: String,

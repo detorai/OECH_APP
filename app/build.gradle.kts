@@ -1,14 +1,17 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("plugin.serialization") version "1.7.10"
 }
 
 android {
-    namespace = "com.example.session_1"
+    namespace = "com.example.oech_app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.session_1"
+        applicationId = "com.example.oech_app"
         minSdk = 30
         targetSdk = 34
         versionCode = 1
@@ -17,7 +20,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
-        }
+
+
+             }
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${properties.getProperty("SUPABASE_ANON_KEY")}\"")
+        buildConfigField("String", "SUPABASE_URL", "\"${properties.getProperty("SUPABASE_URL")}\"")
+
     }
 
     buildTypes {
@@ -89,4 +99,16 @@ dependencies {
     implementation (libs.material)
     implementation (libs.accompanist.pager)
     implementation (libs.accompanist.pager.indicators)
+
+
+    implementation (libs.hilt.android)
+    annotationProcessor (libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation (libs.postgrest.kt)
+    implementation (libs.storage.kt)
+    implementation (libs.auth.kt)
+    implementation (libs.ktor.client.android)
+    implementation (libs.ktor.client.core)
+    implementation (libs.ktor.utils)
 }
